@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/garysoed/gs-types/issues"
   },
-  "homepage": "https://github.com/garysoed/gs-types#readme"
+  "homepage": "https://github.com/garysoed/gs-types#readme",
+  "devDependencies": {
+    "@types/jasmine": "^2.8.7",
+    "awesome-typescript-loader": "^5.0.0",
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.2",
+    "karma-jasmine": "^1.1.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "typescript": "^2.8.3",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.8.3"
+  }
 }
