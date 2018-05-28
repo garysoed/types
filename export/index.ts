@@ -1,0 +1,13 @@
+export { AnyType } from '../src/any-type';
+export { ArrayOfType } from '../src/array-of-type';
+export { HasPropertiesType } from '../src/has-properties-type';
+export { InstanceofType } from '../src/instanceof-type';
+export { IntersectType } from '../src/intersect-type';
+export { IterableOfType } from '../src/iterable-of-type';
+export { NativeType } from '../src/native-type';
+export { NonNullType } from '../src/non-null-type';
+export { NumberType } from '../src/number-type';
+export { StringType } from '../src/string-type';
+export { SymbolType } from '../src/symbol-type';
+export { TupleOfType } from '../src/tuple-of-type';
+export { Type } from '../src/type';

@@ -15,6 +15,7 @@
     "pretty": true,
     "sourceMap": true,
     "strict": true,
+    "strictFunctionTypes": true,
     "target": "es6"
   },
   "include": [
