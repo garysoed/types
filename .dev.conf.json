@@ -2,7 +2,7 @@
   "commands": [
     {
       "command": "link",
-      "actions": ["npm link gs-testing"]
+      "actions": ["npm link gs-testing dev"]
     }
   ]
 }
