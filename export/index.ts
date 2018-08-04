@@ -1,5 +1,6 @@
 export { AnyType } from '../src/any-type';
 export { ArrayOfType } from '../src/array-of-type';
+export { BooleanType } from '../src/boolean-type';
 export { ElementWithTagType } from '../src/element-with-tag-type';
 export { HasPropertiesType } from '../src/has-properties-type';
 export { InstanceofType } from '../src/instanceof-type';
