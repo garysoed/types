@@ -24,7 +24,7 @@ describe('check.ElementWithTagType', () => {
     });
 
     should(`should return false if the target is not an HTMLElement`, () => {
-      const element = Mocks.object('element');
+      const element = Mocks.object<HTMLDivElement>('element');
 
       assert(ElementWithTagType('div').check(element)).to.beFalse();
     });
