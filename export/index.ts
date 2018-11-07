@@ -2,6 +2,7 @@ export { AnyType } from '../src/any-type';
 export { ArrayOfType } from '../src/array-of-type';
 export { BooleanType } from '../src/boolean-type';
 export { ElementWithTagType } from '../src/element-with-tag-type';
+export { EnumType } from '../src/enum-type';
 export { HasPropertiesType } from '../src/has-properties-type';
 export { InstanceofType } from '../src/instanceof-type';
 export { IntersectType } from '../src/intersect-type';

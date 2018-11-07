@@ -4,10 +4,10 @@ import { Type } from './type';
  * Creates type that checks for the element's tag name.
  * @param tag HTML tag of the element.
  */
-export function ElementWithTagType<K extends keyof HTMLElementTagNameMap>(tag: K):
-    Type<HTMLElementTagNameMap[K]> {
+export function ElementWithTagType(tag: string):
+    Type<HTMLElement> {
   return {
-    check(target: any): target is HTMLElementTagNameMap[K] {
+    check(target: any): target is HTMLElement {
       if (!(target instanceof HTMLElement)) {
         return false;
       }

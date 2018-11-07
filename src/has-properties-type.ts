@@ -11,8 +11,16 @@ export function HasPropertiesType<OBJ>(spec: {[KEY in keyof OBJ]: Type<OBJ[KEY]>
         return false;
       }
 
+      // Check the non symbolic keys.
       for (const key in spec) {
         if (!spec[key].check(target[key])) {
+          return false;
+        }
+      }
+
+      // Check the symbolic keys.
+      for (const key of Object.getOwnPropertySymbols(spec)) {
+        if (!(spec as any)[key].check(target[key])) {
           return false;
         }
       }
