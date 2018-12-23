@@ -1,3 +1,4 @@
+
 import { should } from 'gs-testing/export/main';
 import { NativeType } from './native-type';
 
