@@ -1,5 +1,4 @@
 import { assert, should } from 'gs-testing/export/main';
-import { Mocks } from 'gs-testing/export/mock';
 import { ElementWithTagType } from './element-with-tag-type';
 
 describe('check.ElementWithTagType', () => {
@@ -25,7 +24,7 @@ describe('check.ElementWithTagType', () => {
     });
 
     should(`return false if the target is not an HTMLElement`, () => {
-      const element = Mocks.object<HTMLDivElement>('element');
+      const element = {};
 
       assert(ElementWithTagType('div').check(element)).to.beFalse();
     });
