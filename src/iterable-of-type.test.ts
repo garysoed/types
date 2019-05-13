@@ -1,4 +1,4 @@
-import { assert, should } from 'gs-testing/export/main';
+import { assert, should } from '@gs-testing';
 import { IterableOfType } from './iterable-of-type';
 import { NumberType } from './number-type';
 

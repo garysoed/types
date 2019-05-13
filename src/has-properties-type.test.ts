@@ -1,4 +1,4 @@
-import { assert, should } from 'gs-testing/export/main';
+import { assert, should } from '@gs-testing';
 import { HasPropertiesType } from './has-properties-type';
 import { NumberType } from './number-type';
 import { StringType } from './string-type';

@@ -14,8 +14,13 @@ interface Enum {
 export function EnumType<E>(enumType: Enum): Type<E> {
   return {
     check(target: any): target is E {
-      // tslint:disable-next-line:strict-type-predicates
-      return enumType[target] !== undefined;
+      for (const key in enumType) {
+        if (enumType[key] === target) {
+          return true;
+        }
+      }
+
+      return false;
     },
 
     toString(): string {

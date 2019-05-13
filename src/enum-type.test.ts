@@ -1,4 +1,4 @@
-import { assert, should } from 'gs-testing/export/main';
+import { assert, should } from '@gs-testing';
 import { EnumType } from './enum-type';
 
 describe('check.EnumType', () => {

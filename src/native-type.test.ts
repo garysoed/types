@@ -1,5 +1,5 @@
 
-import { should } from 'gs-testing/export/main';
+import { should } from '@gs-testing';
 import { NativeType } from './native-type';
 
 describe('check.NativeType', () => {

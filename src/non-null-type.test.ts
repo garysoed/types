@@ -1,4 +1,4 @@
-import { assert, should } from 'gs-testing/export/main';
+import { assert, should } from '@gs-testing';
 import { NonNullType } from './non-null-type';
 
 describe('check.NonNullType', () => {

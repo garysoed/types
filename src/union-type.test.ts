@@ -1,4 +1,4 @@
-import { assert, should } from 'gs-testing/export/main';
+import { assert, should } from '@gs-testing';
 import { BooleanType } from './boolean-type';
 import { HasPropertiesType } from './has-properties-type';
 import { UnionType } from './union-type';
