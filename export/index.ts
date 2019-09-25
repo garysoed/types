@@ -13,6 +13,7 @@ export { NonNullType } from '../src/non-null-type';
 export { NullType } from '../src/null-type';
 export { NullableType } from '../src/nullable-type';
 export { NumberType } from '../src/number-type';
+export { ObjectType } from '../src/object-type';
 export { StringType } from '../src/string-type';
 export { SymbolType } from '../src/symbol-type';
 export { TupleOfType } from '../src/tuple-of-type';
