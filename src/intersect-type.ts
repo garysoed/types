@@ -1,4 +1,34 @@
-import { Type } from './type';
+import { Type } from './core/type';
+import { ValidationResult } from './core/validation-result';
+
+class IntersectTypeImpl<T> extends Type<T> {
+  constructor(private readonly types: ReadonlyArray<Type<unknown>>) {
+    super();
+  }
+
+  toString(): string {
+    const typesString = this.types.map(type => `${type}`).join(' & ');
+
+    return `(${typesString})`;
+  }
+
+  validate(target: unknown): ValidationResult {
+    for (const subtype of this.types) {
+      const result = subtype.validate(target);
+      if (!result.passes) {
+        return {
+          causes: [
+            `not a ${subtype}`,
+            ...result.causes,
+          ],
+          passes: false,
+        };
+      }
+    }
+
+    return {passes: true};
+  }
+}
 
 /**
  * Checks if a target satisfies all of the conditions.
@@ -7,18 +37,11 @@ import { Type } from './type';
  * type T.
  * @param types Types to check.
  */
-export function IntersectType<T>(types: Type<any>[] = []): Type<T> {
-  return {
-    check(target: any): target is T {
-      return types.every((type: Type<T>) => {
-        return type.check(target);
-      });
-    },
-
-    toString(): string {
-      const typesString = types.map((type: Type<T>) => `${type}`).join(' & ');
-
-      return `(${typesString})`;
-    },
-  };
+export function IntersectType(): Type<any>;
+export function IntersectType<S0>(types: readonly [Type<S0>]): Type<S0>;
+export function IntersectType<S0, S1>(
+    types: readonly [Type<S0>, Type<S1>],
+): Type<S0&S1>;
+export function IntersectType<T>(types: ReadonlyArray<Type<unknown>> = []): Type<T> {
+  return new IntersectTypeImpl(types);
 }

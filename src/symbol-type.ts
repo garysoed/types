@@ -1,11 +1,19 @@
-import { Type } from './type';
+import { Type } from './core/type';
+import { ValidationResult } from './core/validation-result';
 
-export const SymbolType: Type<symbol> = {
-  check(target: any): target is symbol {
-    return typeof target === 'symbol';
-  },
-
+class SymbolTypeImpl extends Type<symbol> {
   toString(): string {
     return 'symbol';
-  },
-};
+  }
+
+  validate(target: unknown): ValidationResult {
+    const isSymbol = typeof target === 'symbol';
+    if (isSymbol) {
+      return {passes: true};
+    }
+
+    return {passes: false, causes: ['not a symbol']};
+  }
+}
+
+export const SymbolType: Type<symbol> = new SymbolTypeImpl();

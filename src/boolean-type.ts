@@ -1,11 +1,19 @@
-import { Type } from './type';
+import { Type } from './core/type';
+import { ValidationResult } from './core/validation-result';
 
-export const BooleanType: Type<boolean> = {
-  check(target: any): target is boolean {
-    return typeof target === 'boolean' || target instanceof Boolean;
-  },
-
+class BooleanTypeImpl extends Type<boolean> {
   toString(): string {
     return 'boolean';
-  },
-};
+  }
+
+  validate(target: unknown): ValidationResult {
+    const isBoolean = typeof target === 'boolean' || target instanceof Boolean;
+    if (isBoolean) {
+      return {passes: true};
+    }
+
+    return {passes: false, causes: ['not a boolean']};
+  }
+}
+
+export const BooleanType: Type<boolean> = new BooleanTypeImpl();

@@ -1,14 +1,20 @@
-import { assert, should } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+
 import { NullType } from './null-type';
 
-describe('check.NullType', () => {
-  describe('check', () => {
-    should(`should return true if the target is null`, () => {
-      assert(NullType.check(null)).to.beTrue();
+test('@types/null-type', () => {
+  test('validate', () => {
+    should(`pass if the target is null`, () => {
+      assert(NullType.validate(null)).to.haveProperties({passes: true});
     });
 
-    should(`should return false if the target is not null`, () => {
-      assert(NullType.check('blah')).to.beFalse();
+    should(`false if the target is not null`, () => {
+      assert(NullType.validate('blah')).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/not null/),
+        ]),
+        passes: false,
+      });
     });
   });
 });

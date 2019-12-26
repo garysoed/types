@@ -1,25 +1,44 @@
-import { Type } from './type';
+import { Type } from './core/type';
+import { ValidationResult } from './core/validation-result';
+
+type TypeOf<T> = {[K in keyof T]: Type<T[K]>};
+
+class TupleOfTypeImpl<T extends unknown[]> extends Type<T> {
+  constructor(private readonly spec: TypeOf<T>) {
+    super();
+  }
+
+  toString(): string {
+    return `[${this.spec.map(type => `${type}`).join(', ')}]`;
+  }
+
+  validate(target: unknown): ValidationResult {
+    if (!(target instanceof Array)) {
+      return {causes: ['not a tuple'], passes: false};
+    }
+
+    for (let i = 0; i < this.spec.length; i++) {
+      const spec = this.spec[i];
+      const result = spec.validate(target[i]);
+      if (!result.passes) {
+        return {
+          causes: [
+            `element ${i} is not a ${spec}`,
+            ...result.causes,
+          ],
+          passes: false,
+        };
+      }
+    }
+
+    return {passes: true};
+  }
+}
 
 /**
  * Creates a tuple type.
  * @param spec Types of the tuple values.
  */
-export function TupleOfType<T0>(spec: [Type<T0>]): Type<[T0]>;
-export function TupleOfType<T0, T1>(spec: [Type<T0>, Type<T1>]): Type<[T0, T1]>;
-export function TupleOfType(spec: Type<any>[]): Type<any[]> {
-  return {
-    check(target: any): target is any[] {
-      if (!(target instanceof Object)) {
-        return false;
-      }
-
-      return spec.every((type: Type<any>, index: number) => {
-        return type.check(target[index]);
-      });
-    },
-
-    toString(): string {
-      return `[${spec.map((type: Type<any>) => `${type}`).join(', ')}]`;
-    },
-  };
+export function TupleOfType<T extends unknown[]>(spec: TypeOf<T>): Type<T> {
+  return new TupleOfTypeImpl(spec);
 }

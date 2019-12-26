@@ -1,32 +1,40 @@
 
-import { should } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+
 import { NativeType } from './native-type';
 
-describe('check.NativeType', () => {
-  describe('isNative', () => {
-    should('should return true if the value is a boolean', () => {
-      // We cannot use assert, since assert relies on NativeType.
-      expect(NativeType.check(true)).toEqual(true);
+test('@types/is-native', () => {
+  test('validate', () => {
+    should('pass if the value is a boolean', () => {
+      assert(NativeType.validate(true)).to.haveProperties({passes: true});
     });
 
-    should('should return true if the value is a number', () => {
-      // We cannot use assert, since assert relies on NativeType.
-      expect(NativeType.check(123)).toEqual(true);
+    should('pass if the value is a number', () => {
+      assert(NativeType.validate(123)).to.haveProperties({passes: true});
     });
 
-    should('should return true if the value is a string', () => {
-      // We cannot use assert, since assert relies on NativeType.
-      expect(NativeType.check('value')).toEqual(true);
+    should('pass if the value is a string', () => {
+      assert(NativeType.validate('value')).to.haveProperties({passes: true});
     });
 
-    should('should return true if the value is a symbol', () => {
-      // We cannot use assert, since assert relies on NativeType.
-      expect(NativeType.check(Symbol('symbol'))).toEqual(true);
+    should('pass if the value is a symbol', () => {
+      assert(NativeType.validate(Symbol('symbol'))).to.haveProperties({passes: true});
     });
 
-    should('should return false otherwise', () => {
-      // We cannot use assert, since assert relies on NativeType.
-      expect(NativeType.check({})).toEqual(false);
+    should('not pass otherwise', () => {
+      assert(NativeType.validate({})).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/not a boolean/),
+          stringThat().match(/>   not a boolean/),
+          stringThat().match(/not a number/),
+          stringThat().match(/>   not a number/),
+          stringThat().match(/not a string/),
+          stringThat().match(/>   not a string/),
+          stringThat().match(/not a symbol/),
+          stringThat().match(/>   not a symbol/),
+        ]),
+        passes: false,
+      });
     });
   });
 });

@@ -1,42 +1,76 @@
-import { Type } from './type';
+import { Type } from './core/type';
+import { ValidationResult } from './core/validation-result';
+
+class HasPropertiesTypeImpl<O extends {}> extends Type<O> {
+  constructor(
+      private readonly spec: {[K in keyof O]: Type<O[K]>},
+  ) {
+    super();
+  }
+
+  toString(): string {
+    const entries: string[] = [];
+    for (const key in this.spec) {
+      if (this.spec.hasOwnProperty(key)) {
+        entries.push(`${key}: ${this.spec[key]}`);
+      }
+    }
+
+    return `{${entries.join(', ')}}`;
+  }
+
+  validate(target: unknown): ValidationResult {
+    if (!(target instanceof Object)) {
+      return {causes: ['not an object'], passes: false};
+    }
+
+    const targetObj = target as Partial<O>;
+
+    // Check the non symbolic keys.
+    for (const key in this.spec) {
+      if (!this.spec.hasOwnProperty(key)) {
+        continue;
+      }
+
+      const element = targetObj[key];
+      const spec = this.spec[key];
+      const result = spec.validate(element);
+      if (!result.passes) {
+        return {
+          causes: [
+            `property ${key} is not of type ${spec}`,
+            ...result.causes,
+          ],
+          passes: false,
+        };
+      }
+    }
+
+    // Check the symbolic keys.
+    for (const key of Object.getOwnPropertySymbols(this.spec)) {
+      const element = (targetObj as any)[key];
+      const spec = (this.spec as any)[key];
+      const result = spec.validate(element);
+
+      if (!result.passes) {
+        return {
+          causes: [
+            `property ${key.toString()} is not of type ${spec}`,
+            ...result.causes,
+          ],
+          passes: false,
+        };
+      }
+    }
+
+    return {passes: true};
+  }
+}
 
 /**
  * Creates a type of an object with known properties and their types.
  * @param spec Map of property of the expected object type to the type of that property.
  */
 export function HasPropertiesType<OBJ>(spec: {[KEY in keyof OBJ]: Type<OBJ[KEY]>}): Type<OBJ> {
-  return {
-    check(target: any): target is OBJ {
-      if (!(target instanceof Object)) {
-        return false;
-      }
-
-      // Check the non symbolic keys.
-      for (const key in spec) {
-        if (!spec[key].check(target[key])) {
-          return false;
-        }
-      }
-
-      // Check the symbolic keys.
-      for (const key of Object.getOwnPropertySymbols(spec)) {
-        if (!(spec as any)[key].check(target[key])) {
-          return false;
-        }
-      }
-
-      return true;
-    },
-
-    toString(): string {
-      const entries: string[] = [];
-      for (const key in spec) {
-        if (spec.hasOwnProperty(key)) {
-          entries.push(`${key}: ${spec[key]}`);
-        }
-      }
-
-      return `{${entries.join(', ')}}`;
-    },
-  };
+  return new HasPropertiesTypeImpl(spec);
 }

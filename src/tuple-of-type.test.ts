@@ -1,20 +1,33 @@
-import { assert, should } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+
 import { NumberType } from './number-type';
 import { StringType } from './string-type';
 import { TupleOfType } from './tuple-of-type';
 
-describe('check.TupleOfType', () => {
-  describe('check', () => {
-    should(`should return true if the target is tuple of the correct type`, () => {
-      assert(TupleOfType([NumberType, StringType]).check([1, '1'])).to.beTrue();
+test('@types/tuple-of-type', () => {
+  test('validate', () => {
+    should(`pass if the target is tuple of the correct type`, () => {
+      assert(TupleOfType([NumberType, StringType]).validate([1, '1'])).to
+          .haveProperties({passes: true});
     });
 
-    should(`should return false if the tuple element has the wrong type`, () => {
-      assert(TupleOfType([NumberType, StringType]).check([1, 2])).to.beFalse();
+    should(`not pass if the tuple element has the wrong type`, () => {
+      assert(TupleOfType([NumberType, StringType]).validate([1, 2])).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/element 1 is not a string/),
+          stringThat().match(/not a string/),
+        ]),
+        passes: false,
+      });
     });
 
-    should(`should return false if the target is not an Object`, () => {
-      assert(TupleOfType([NumberType, StringType]).check(123)).to.beFalse();
+    should(`not pass if the target is not an Object`, () => {
+      assert(TupleOfType([NumberType, StringType]).validate(123)).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/not a tuple/),
+        ]),
+        passes: false,
+      });
     });
   });
 });

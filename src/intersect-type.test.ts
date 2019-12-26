@@ -1,12 +1,13 @@
-import { assert, should } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+
 import { BooleanType } from './boolean-type';
 import { HasPropertiesType } from './has-properties-type';
 import { IntersectType } from './intersect-type';
 import { StringType } from './string-type';
 
-describe('check.IntersectType', () => {
-  describe('check', () => {
-    should('should return true if the object satisfies all of the requirements', () => {
+test('@types/intersect-type', () => {
+  test('validate', () => {
+    should('pass if the object satisfies all of the requirements', () => {
       const name1 = 'name1';
       const name2 = 'name2';
       const type = IntersectType([
@@ -14,10 +15,10 @@ describe('check.IntersectType', () => {
         HasPropertiesType({[name2]: StringType}),
       ]);
       const target = {[name1]: true, [name2]: 'value'};
-      assert(type.check(target)).to.beTrue();
+      assert(type.validate(target)).to.haveProperties({passes: true});
     });
 
-    should('should return false if the object does not satisfy one of the requirements', () => {
+    should('not pass if the object does not satisfy one of the requirements', () => {
       const name1 = 'name1';
       const name2 = 'name2';
       const type = IntersectType([
@@ -25,12 +26,19 @@ describe('check.IntersectType', () => {
         HasPropertiesType({[name2]: BooleanType}),
       ]);
       const target = {[name1]: true, [name2]: 'value'};
-      assert(type.check(target)).to.beFalse();
+      assert(type.validate(target)).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/not a {name2: boolean}/),
+          stringThat().match(/property name2 is not of type boolean/),
+          stringThat().match(/not a boolean/),
+        ]),
+        passes: false,
+      });
     });
 
-    should('should return true if there are no requirements', () => {
+    should('pass if there are no requirements', () => {
       const target = {name1: true, name2: 'value'};
-      assert(IntersectType().check(target)).to.beTrue();
+      assert(IntersectType().validate(target)).to.haveProperties({passes: true});
     });
   });
 });

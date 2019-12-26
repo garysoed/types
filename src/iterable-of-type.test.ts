@@ -1,19 +1,32 @@
-import { assert, should } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+
 import { IterableOfType } from './iterable-of-type';
 import { NumberType } from './number-type';
 
-describe('check.IterableOfType', () => {
-  describe('check', () => {
-    should(`should return true if the target is an iterable with the correct elements`, () => {
-      assert(IterableOfType(NumberType).check([1, 2, 3])).to.beTrue();
+test('@types/iterable-of-type', () => {
+  test('validate', () => {
+    should(`pass if the target is an iterable with the correct elements`, () => {
+      assert(IterableOfType(NumberType).validate([1, 2, 3])).to.haveProperties({passes: true});
     });
 
-    should(`should return false if one of the elements is of the wrong type`, () => {
-      assert(IterableOfType(NumberType).check([1, '2', 3])).to.beFalse();
+    should(`not pass if one of the elements is of the wrong type`, () => {
+      assert(IterableOfType(NumberType).validate([1, '2', 3])).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/item 1 is not a number/),
+          stringThat().match(/not a number/),
+        ]),
+        passes: false,
+      });
     });
 
-    should(`should return false if not an iterable`, () => {
-      assert(IterableOfType(NumberType).check(123)).to.beFalse();
+    should(`not pass if not an iterable`, () => {
+      assert(IterableOfType(NumberType).validate(123)).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/not an Iterable<number>/),
+          stringThat().match(/not an object/),
+        ]),
+        passes: false,
+      });
     });
   });
 });

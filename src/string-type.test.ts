@@ -1,18 +1,24 @@
-import { assert, should } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+
 import { StringType } from './string-type';
 
-describe('check.StringType', () => {
-  describe('isString', () => {
-    should('should return true if the value is a native string', () => {
-      assert(StringType.check('string')).to.beTrue();
+test('@types/string-type', () => {
+  test('validate', () => {
+    should('pass if the value is a native string', () => {
+      assert(StringType.validate('string')).to.haveProperties({passes: true});
     });
 
-    should('should return true if the value is a String object', () => {
-      assert(StringType.check(String('string'))).to.beTrue();
+    should('pass if the value is a String object', () => {
+      assert(StringType.validate(String('string'))).to.haveProperties({passes: true});
     });
 
-    should('should return false otherwise', () => {
-      assert(StringType.check(Symbol('symbol'))).to.beFalse();
+    should('not pass otherwise', () => {
+      assert(StringType.validate(Symbol('symbol'))).to.haveProperties({
+        causes: arrayThat().haveExactElements([
+          stringThat().match(/not a string/),
+        ]),
+        passes: false,
+      });
     });
   });
 });
