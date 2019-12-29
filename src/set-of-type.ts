@@ -8,7 +8,7 @@ class SetTypeImpl<T> extends Type<Set<T>> {
   }
 
   toString(): string {
-    return `${this.elementType}[]`;
+    return `Set<${this.elementType}>`;
   }
 
   validate(target: unknown): ValidationResult {
@@ -34,11 +34,11 @@ class SetTypeImpl<T> extends Type<Set<T>> {
 }
 
 /**
- * Checks if the elements of the given array are all of the given type.
+ * Checks if the elements of the given set are all of the given type.
  *
  * @param type Type of the elements.
  * @param <T> Type of the element.
- * @return The array type.
+ * @return The set type.
  */
 export function SetOfType<T>(type: Type<T>): Type<Set<T>> {
   return new SetTypeImpl(type);

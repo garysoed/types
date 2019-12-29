@@ -8,5 +8,5 @@ export class TypeAssertionError extends Error {
 }
 
 function renderCauses(causes: readonly string[]): string {
-  return causes.map(cause => `  -   ${cause}`).join('\n');
+  return causes.map(cause => `  >   ${cause}`).join('\n');
 }

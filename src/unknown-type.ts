@@ -1,9 +1,9 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class AnyTypeImpl extends Type<any> {
+class UnknownTypeImpl extends Type<unknown> {
   toString(): string {
-    return '(any)';
+    return '(unknown)';
   }
 
   validate(): ValidationResult {
@@ -11,11 +11,4 @@ class AnyTypeImpl extends Type<any> {
   }
 }
 
-const INSTANCE = new AnyTypeImpl();
-
-/**
- * Creates a type for any.
- */
-export function AnyType<T>(): Type<T> {
-  return INSTANCE;
-}
+export const UnknownType = new UnknownTypeImpl();
