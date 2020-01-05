@@ -22,3 +22,5 @@ export { UndefinedType } from '../src/undefined-type';
 export { UnionType } from '../src/union-type';
 export { UnknownType } from '../src/unknown-type';
 export { ValidationResult } from '../src/core/validation-result';
+
+export { TypeAssertionError } from '../src/core/type-assertion-error';
