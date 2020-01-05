@@ -1,8 +1,8 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
-import { InstanceofType } from './instanceof-type';
+import { instanceofType } from './instanceof-type';
 
-class SetTypeImpl<T> extends Type<Set<T>> {
+class SetType<T> extends Type<Set<T>> {
   constructor(private readonly elementType: Type<T>) {
     super();
   }
@@ -12,7 +12,7 @@ class SetTypeImpl<T> extends Type<Set<T>> {
   }
 
   validate(target: unknown): ValidationResult {
-    if (InstanceofType(Set).check(target)) {
+    if (instanceofType(Set).check(target)) {
       for (const element of target) {
         const result = this.elementType.validate(element);
         if (!result.passes) {
@@ -40,6 +40,6 @@ class SetTypeImpl<T> extends Type<Set<T>> {
  * @param <T> Type of the element.
  * @return The set type.
  */
-export function SetOfType<T>(type: Type<T>): Type<Set<T>> {
-  return new SetTypeImpl(type);
+export function setOfType<T>(type: Type<T>): Type<Set<T>> {
+  return new SetType(type);
 }

@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class SymbolTypeImpl extends Type<symbol> {
+class SymbolType extends Type<symbol> {
   toString(): string {
     return 'symbol';
   }
@@ -16,4 +16,4 @@ class SymbolTypeImpl extends Type<symbol> {
   }
 }
 
-export const SymbolType: Type<symbol> = new SymbolTypeImpl();
+export const symbolType: Type<symbol> = new SymbolType();

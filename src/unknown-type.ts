@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class UnknownTypeImpl extends Type<unknown> {
+class UnknownType extends Type<unknown> {
   toString(): string {
     return '(unknown)';
   }
@@ -11,4 +11,4 @@ class UnknownTypeImpl extends Type<unknown> {
   }
 }
 
-export const UnknownType = new UnknownTypeImpl();
+export const unknownType = new UnknownType();

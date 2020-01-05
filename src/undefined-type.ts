@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class UndefinedTypeImpl extends Type<undefined> {
+class UndefinedType extends Type<undefined> {
   toString(): string {
     return 'undefined';
   }
@@ -16,4 +16,4 @@ class UndefinedTypeImpl extends Type<undefined> {
   }
 }
 
-export const UndefinedType: Type<undefined> = new UndefinedTypeImpl();
+export const undefinedType: Type<undefined> = new UndefinedType();

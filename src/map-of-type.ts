@@ -1,10 +1,10 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
-import { InstanceofType } from './instanceof-type';
-import { TupleOfType } from './tuple-of-type';
+import { instanceofType } from './instanceof-type';
+import { tupleOfType } from './tuple-of-type';
 
-class MapTypeImpl<K, V> extends Type<Map<K, V>> {
-  private readonly entryType: Type<[K, V]> = TupleOfType<[K, V]>([this.keyType, this.valueType]);
+class MapType<K, V> extends Type<Map<K, V>> {
+  private readonly entryType: Type<[K, V]> = tupleOfType<[K, V]>([this.keyType, this.valueType]);
 
   constructor(
       private readonly keyType: Type<K>,
@@ -18,7 +18,7 @@ class MapTypeImpl<K, V> extends Type<Map<K, V>> {
   }
 
   validate(target: unknown): ValidationResult {
-    if (InstanceofType(Map).check(target)) {
+    if (instanceofType(Map).check(target)) {
       for (const entry of target) {
         const result = this.entryType.validate(entry);
         if (!result.passes) {
@@ -48,6 +48,6 @@ class MapTypeImpl<K, V> extends Type<Map<K, V>> {
  * @param <V> Type of the value.
  * @return The map type.
  */
-export function MapOfType<K, V>(keyType: Type<K>, valueType: Type<V>): Type<Map<K, V>> {
-  return new MapTypeImpl(keyType, valueType);
+export function mapOfType<K, V>(keyType: Type<K>, valueType: Type<V>): Type<Map<K, V>> {
+  return new MapType(keyType, valueType);
 }

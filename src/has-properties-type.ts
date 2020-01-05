@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class HasPropertiesTypeImpl<O extends {}> extends Type<O> {
+class HasPropertiesType<O extends {}> extends Type<O> {
   constructor(
       private readonly spec: {[K in keyof O]: Type<O[K]>},
   ) {
@@ -71,6 +71,6 @@ class HasPropertiesTypeImpl<O extends {}> extends Type<O> {
  * Creates a type of an object with known properties and their types.
  * @param spec Map of property of the expected object type to the type of that property.
  */
-export function HasPropertiesType<OBJ>(spec: {[KEY in keyof OBJ]: Type<OBJ[KEY]>}): Type<OBJ> {
-  return new HasPropertiesTypeImpl(spec);
+export function hasPropertiesType<OBJ>(spec: {[KEY in keyof OBJ]: Type<OBJ[KEY]>}): Type<OBJ> {
+  return new HasPropertiesType(spec);
 }

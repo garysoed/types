@@ -1,8 +1,8 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
-import { InstanceofType } from './instanceof-type';
+import { instanceofType } from './instanceof-type';
 
-class ArrayTypeImpl<T> extends Type<T[]> {
+class ArrayOfType<T> extends Type<T[]> {
   constructor(private readonly elementType: Type<T>) {
     super();
   }
@@ -12,7 +12,7 @@ class ArrayTypeImpl<T> extends Type<T[]> {
   }
 
   validate(target: unknown): ValidationResult {
-    if (InstanceofType(Array).check(target)) {
+    if (instanceofType(Array).check(target)) {
       for (const element of target) {
         const result = this.elementType.validate(element);
         if (!result.passes) {
@@ -40,6 +40,6 @@ class ArrayTypeImpl<T> extends Type<T[]> {
  * @param <T> Type of the element.
  * @return The array type.
  */
-export function ArrayOfType<T>(type: Type<T>): Type<T[]> {
-  return new ArrayTypeImpl(type);
+export function arrayOfType<T>(type: Type<T>): Type<T[]> {
+  return new ArrayOfType(type);
 }

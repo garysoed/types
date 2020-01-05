@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class BooleanTypeImpl extends Type<boolean> {
+class BooleanType extends Type<boolean> {
   toString(): string {
     return 'boolean';
   }
@@ -16,4 +16,4 @@ class BooleanTypeImpl extends Type<boolean> {
   }
 }
 
-export const BooleanType: Type<boolean> = new BooleanTypeImpl();
+export const booleanType: Type<boolean> = new BooleanType();

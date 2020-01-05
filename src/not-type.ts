@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class NotTypeImpl<T, X extends T> extends Type<Exclude<T, X>> {
+class NotType<T, X extends T> extends Type<Exclude<T, X>> {
   constructor(
       private readonly type: Type<X>,
   ) {
@@ -30,6 +30,6 @@ class NotTypeImpl<T, X extends T> extends Type<Exclude<T, X>> {
  * @param ctor Ctor to check the type.
  * @return The instanceof type.
  */
-export function NotType<T, X extends T>(type: Type<X>): Type<Exclude<T, X>> {
-  return new NotTypeImpl(type);
+export function notType<T, X extends T>(type: Type<X>): Type<Exclude<T, X>> {
+  return new NotType(type);
 }

@@ -1,13 +1,15 @@
-import { BooleanType } from './boolean-type';
+import { booleanType } from './boolean-type';
 import { Type } from './core/type';
-import { NumberType } from './number-type';
-import { StringType } from './string-type';
-import { SymbolType } from './symbol-type';
-import { UnionType } from './union-type';
+import { numberType } from './number-type';
+import { stringType } from './string-type';
+import { symbolType } from './symbol-type';
+import { undefinedType } from './undefined-type';
+import { unionType } from './union-type';
 
-export const NativeType: Type<boolean|number|string|symbol> = UnionType([
-  BooleanType,
-  NumberType,
-  StringType,
-  SymbolType,
+export const nativeType: Type<boolean|number|string|symbol|undefined> = unionType([
+  booleanType,
+  numberType,
+  stringType,
+  symbolType,
+  undefinedType,
 ]);

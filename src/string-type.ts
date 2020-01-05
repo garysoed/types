@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class StringTypeImpl extends Type<string> {
+class StringType extends Type<string> {
   toString(): string {
     return 'string';
   }
@@ -16,4 +16,4 @@ class StringTypeImpl extends Type<string> {
   }
 }
 
-export const StringType: Type<string> = new StringTypeImpl();
+export const stringType: Type<string> = new StringType();

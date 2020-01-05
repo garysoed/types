@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class EqualTypeImpl<T> extends Type<T> {
+class EqualType<T> extends Type<T> {
   constructor(private readonly value: T) {
     super();
   }
@@ -20,6 +20,6 @@ class EqualTypeImpl<T> extends Type<T> {
   }
 }
 
-export function EqualType<T>(value: T): Type<T> {
-  return new EqualTypeImpl(value);
+export function equalType<T>(value: T): Type<T> {
+  return new EqualType(value);
 }

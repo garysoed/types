@@ -1,15 +1,15 @@
 import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
 
-import { BooleanType } from './boolean-type';
-import { HasPropertiesType } from './has-properties-type';
-import { UnionType } from './union-type';
+import { booleanType } from './boolean-type';
+import { hasPropertiesType } from './has-properties-type';
+import { unionType } from './union-type';
 
 test('@types/union-type', () => {
   test('validate', () => {
     should('pass if the object satisfies some of the requirements', () => {
       const name = 'name1';
-      const type = UnionType([
-        HasPropertiesType({[name]: BooleanType}),
+      const type = unionType([
+        hasPropertiesType({[name]: booleanType}),
       ]);
       const target = {[name]: true, other: 'value'};
       assert(type.validate(target)).to.haveProperties({passes: true});
@@ -17,8 +17,8 @@ test('@types/union-type', () => {
 
     should('not pass if the object does not satisfy any of the requirements', () => {
       const name = 'name1';
-      const type = UnionType([
-        HasPropertiesType({[name]: BooleanType}),
+      const type = unionType([
+        hasPropertiesType({[name]: booleanType}),
       ]);
       const target = {[name]: 123, other: 'value'};
       assert(type.validate(target)).to.haveProperties({
@@ -33,7 +33,7 @@ test('@types/union-type', () => {
 
     should('not pass if there are no requirements', () => {
       const target = {name1: true, name2: 'value'};
-      assert(UnionType().validate(target)).to.haveProperties({
+      assert(unionType().validate(target)).to.haveProperties({
         causes: arrayThat().beEmpty(),
         passes: false,
       });

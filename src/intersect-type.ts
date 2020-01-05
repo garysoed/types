@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class IntersectTypeImpl<T> extends Type<T> {
+class IntersectType<T> extends Type<T> {
   constructor(private readonly types: ReadonlyArray<Type<unknown>>) {
     super();
   }
@@ -37,11 +37,11 @@ class IntersectTypeImpl<T> extends Type<T> {
  * type T.
  * @param types Types to check.
  */
-export function IntersectType(): Type<any>;
-export function IntersectType<S0>(types: readonly [Type<S0>]): Type<S0>;
-export function IntersectType<S0, S1>(
+export function intersectType(): Type<any>;
+export function intersectType<S0>(types: readonly [Type<S0>]): Type<S0>;
+export function intersectType<S0, S1>(
     types: readonly [Type<S0>, Type<S1>],
 ): Type<S0&S1>;
-export function IntersectType<T>(types: ReadonlyArray<Type<unknown>> = []): Type<T> {
-  return new IntersectTypeImpl(types);
+export function intersectType<T>(types: ReadonlyArray<Type<unknown>> = []): Type<T> {
+  return new IntersectType(types);
 }

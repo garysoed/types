@@ -1,14 +1,14 @@
 import { Type } from './core/type';
 import { TypeAssertionError } from './core/type-assertion-error';
 import { ValidationResult } from './core/validation-result';
-import { HasPropertiesType } from './has-properties-type';
-import { InstanceofType } from './instanceof-type';
+import { hasPropertiesType } from './has-properties-type';
+import { instanceofType } from './instanceof-type';
 
-const IterableType: Type<Iterable<any>> = HasPropertiesType<Iterable<any>>(
-    {[Symbol.iterator]: InstanceofType(Function)},
+const IterableType: Type<Iterable<any>> = hasPropertiesType<Iterable<any>>(
+    {[Symbol.iterator]: instanceofType(Function)},
 );
 
-class IterableOfTypeImpl<T> extends Type<Iterable<T>> {
+class IterableOfType<T> extends Type<Iterable<T>> {
   constructor(private readonly type: Type<T>) {
     super();
   }
@@ -56,6 +56,6 @@ class IterableOfTypeImpl<T> extends Type<Iterable<T>> {
  * Creates a type of an iterable where each element in the object is of the given type.
  * @param type Type of the element in the iterable.
  */
-export function IterableOfType<T>(type: Type<T>): Type<Iterable<T>> {
-  return new IterableOfTypeImpl(type);
+export function iterableOfType<T>(type: Type<T>): Type<Iterable<T>> {
+  return new IterableOfType(type);
 }

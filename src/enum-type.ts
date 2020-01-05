@@ -8,7 +8,7 @@ interface Enum {
   [key: number]: string;
 }
 
-class EnumTypeImpl<E> extends Type<E> {
+class EnumType<E> extends Type<E> {
   constructor(private readonly enumType: Enum) {
     super();
   }
@@ -32,6 +32,6 @@ class EnumTypeImpl<E> extends Type<E> {
  * Creates type for the given enum.
  * @param enumType Type of enum to check.
  */
-export function EnumType<E>(enumType: Enum): Type<E> {
-  return new EnumTypeImpl<E>(enumType);
+export function enumType<E>(enumType: Enum): Type<E> {
+  return new EnumType<E>(enumType);
 }

@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class InstanceofTypeImpl<T> extends Type<T> {
+class InstanceofType<T> extends Type<T> {
   constructor(
       private readonly ctor: (new (...args: any[]) => T)|Function,
   ) {
@@ -30,6 +30,6 @@ class InstanceofTypeImpl<T> extends Type<T> {
  * @param ctor Ctor to check the type.
  * @return The instanceof type.
  */
-export function InstanceofType<T>(ctor: (new (...args: any[]) => T) | Function): Type<T> {
-  return new InstanceofTypeImpl(ctor);
+export function instanceofType<T>(ctor: (new (...args: any[]) => T) | Function): Type<T> {
+  return new InstanceofType(ctor);
 }

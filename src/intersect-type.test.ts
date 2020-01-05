@@ -1,18 +1,18 @@
 import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
 
-import { BooleanType } from './boolean-type';
-import { HasPropertiesType } from './has-properties-type';
-import { IntersectType } from './intersect-type';
-import { StringType } from './string-type';
+import { booleanType } from './boolean-type';
+import { hasPropertiesType } from './has-properties-type';
+import { intersectType } from './intersect-type';
+import { stringType } from './string-type';
 
 test('@types/intersect-type', () => {
   test('validate', () => {
     should('pass if the object satisfies all of the requirements', () => {
       const name1 = 'name1';
       const name2 = 'name2';
-      const type = IntersectType([
-        HasPropertiesType({[name1]: BooleanType}),
-        HasPropertiesType({[name2]: StringType}),
+      const type = intersectType([
+        hasPropertiesType({[name1]: booleanType}),
+        hasPropertiesType({[name2]: stringType}),
       ]);
       const target = {[name1]: true, [name2]: 'value'};
       assert(type.validate(target)).to.haveProperties({passes: true});
@@ -21,9 +21,9 @@ test('@types/intersect-type', () => {
     should('not pass if the object does not satisfy one of the requirements', () => {
       const name1 = 'name1';
       const name2 = 'name2';
-      const type = IntersectType([
-        HasPropertiesType({[name1]: BooleanType}),
-        HasPropertiesType({[name2]: BooleanType}),
+      const type = intersectType([
+        hasPropertiesType({[name1]: booleanType}),
+        hasPropertiesType({[name2]: booleanType}),
       ]);
       const target = {[name1]: true, [name2]: 'value'};
       assert(type.validate(target)).to.haveProperties({
@@ -38,7 +38,7 @@ test('@types/intersect-type', () => {
 
     should('pass if there are no requirements', () => {
       const target = {name1: true, name2: 'value'};
-      assert(IntersectType().validate(target)).to.haveProperties({passes: true});
+      assert(intersectType().validate(target)).to.haveProperties({passes: true});
     });
   });
 });

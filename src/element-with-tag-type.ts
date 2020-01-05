@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class ElementWithTagTypeImpl<E extends HTMLElement> extends Type<E> {
+class ElementWithTagType<E extends HTMLElement> extends Type<E> {
   constructor(private readonly tag: string) {
     super();
   }
@@ -29,10 +29,10 @@ class ElementWithTagTypeImpl<E extends HTMLElement> extends Type<E> {
  * Creates type that checks for the element's tag name.
  * @param tag HTML tag of the element.
  */
-export function ElementWithTagType<T extends keyof HTMLElementTagNameMap>(
+export function elementWithTagType<T extends keyof HTMLElementTagNameMap>(
     tag: T,
 ): Type<HTMLElementTagNameMap[T]>;
-export function ElementWithTagType(tag: string): Type<HTMLElement>;
-export function ElementWithTagType(tag: string): Type<HTMLElement> {
-  return new ElementWithTagTypeImpl(tag);
+export function elementWithTagType(tag: string): Type<HTMLElement>;
+export function elementWithTagType(tag: string): Type<HTMLElement> {
+  return new ElementWithTagType(tag);
 }

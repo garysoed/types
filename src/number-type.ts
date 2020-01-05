@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class NumberTypeImpl extends Type<number> {
+class NumberType extends Type<number> {
   toString(): string {
     return 'number';
   }
@@ -16,4 +16,4 @@ class NumberTypeImpl extends Type<number> {
   }
 }
 
-export const NumberType: Type<number> = new NumberTypeImpl();
+export const numberType: Type<number> = new NumberType();

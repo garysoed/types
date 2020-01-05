@@ -1,7 +1,7 @@
 import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 
-class NullTypeImpl extends Type<null> {
+class NullType extends Type<null> {
   toString(): string {
     return 'null';
   }
@@ -16,4 +16,4 @@ class NullTypeImpl extends Type<null> {
   }
 }
 
-export const NullType: Type<null> = new NullTypeImpl();
+export const nullType: Type<null> = new NullType();
