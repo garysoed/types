@@ -1,6 +1,4 @@
 /** @deprecated */
-export { arrayOfType as ArrayOfType } from '../src/array-of-type';
-/** @deprecated */
 export { booleanType as BooleanType } from '../src/boolean-type';
 /** @deprecated */
 export { elementWithTagType as ElementWithTagType } from '../src/element-with-tag-type';
@@ -43,7 +41,7 @@ export { unionType as UnionType } from '../src/union-type';
 /** @deprecated */
 export { unknownType as UnknownType } from '../src/unknown-type';
 
-export { arrayOfType } from '../src/array-of-type';
+export { arrayOfType, ArrayOfType } from '../src/array-of-type';
 export { booleanType } from '../src/boolean-type';
 export { elementWithTagType } from '../src/element-with-tag-type';
 export { enumType } from '../src/enum-type';

@@ -3,7 +3,7 @@ import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
 
 import { nativeType } from './native-type';
 
-test('@types/is-native', () => {
+test('@types/native-type', () => {
   test('validate', () => {
     should('pass if the value is a boolean', () => {
       assert(nativeType.validate(true)).to.haveProperties({passes: true});
@@ -32,6 +32,8 @@ test('@types/is-native', () => {
           stringThat().match(/>   not a string/),
           stringThat().match(/not a symbol/),
           stringThat().match(/>   not a symbol/),
+          stringThat().match(/not a undefined/),
+          stringThat().match(/>   not undefined/),
         ]),
         passes: false,
       });

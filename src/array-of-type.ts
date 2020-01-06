@@ -2,7 +2,7 @@ import { Type } from './core/type';
 import { ValidationResult } from './core/validation-result';
 import { instanceofType } from './instanceof-type';
 
-class ArrayOfType<T> extends Type<T[]> {
+export class ArrayOfType<T> extends Type<T[]> {
   constructor(private readonly elementType: Type<T>) {
     super();
   }
