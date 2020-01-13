@@ -56,6 +56,7 @@ export { notType } from '../src/not-type';
 export { nullType } from '../src/null-type';
 export { nullableType } from '../src/nullable-type';
 export { numberType } from '../src/number-type';
+export { optionalType } from '../src/optional-type';
 export { setOfType } from '../src/set-of-type';
 export { stringType } from '../src/string-type';
 export { symbolType } from '../src/symbol-type';
