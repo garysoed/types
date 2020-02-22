@@ -1,5 +1,5 @@
 
-import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
 
 import { nativeType } from './native-type';
 

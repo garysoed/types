@@ -1,4 +1,4 @@
-import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
 
 import { symbolType } from './symbol-type';
 

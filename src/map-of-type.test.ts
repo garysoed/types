@@ -1,4 +1,4 @@
-import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
 
 import { mapOfType } from './map-of-type';
 import { numberType } from './number-type';

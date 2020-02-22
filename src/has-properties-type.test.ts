@@ -1,4 +1,4 @@
-import { arrayThat, assert, should, stringThat, test } from '@gs-testing';
+import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
 
 import { hasPropertiesType } from './has-properties-type';
 import { numberType } from './number-type';
