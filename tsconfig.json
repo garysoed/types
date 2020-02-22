@@ -12,10 +12,6 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "outDir": "out",
-    "paths": {
-      "@rxjs": ["node_modules/rxjs"],
-      "@rxjs/operators": ["node_modules/rxjs/operators"],
-    },
     "pretty": true,
     "sourceMap": true,
     "strict": true,
