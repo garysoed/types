@@ -17,10 +17,10 @@ class EnumType<E> extends Type<E> {
     return `Enum`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<E> {
     for (const key in this.enumType) {
       if (this.enumType[key] === target) {
-        return {passes: true};
+        return {passes: true, value: target as unknown as E};
       }
     }
 

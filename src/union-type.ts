@@ -12,12 +12,12 @@ class UnionType<T> extends Type<T> {
     return `(${typesString})`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<T> {
     const allSubCauses: string[] = [];
     for (const subtype of this.types) {
       const result = subtype.validate(target);
       if (result.passes) {
-        return {passes: true};
+        return {passes: true, value: target as T};
       }
 
       allSubCauses.push(

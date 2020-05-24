@@ -6,10 +6,9 @@ class StringType extends Type<string> {
     return 'string';
   }
 
-  validate(target: unknown): ValidationResult {
-    const isString = typeof target === 'string' || target instanceof String;
-    if (isString) {
-      return {passes: true};
+  validate(target: unknown): ValidationResult<string> {
+    if (typeof target === 'string' || target instanceof String) {
+      return {passes: true, value: target as string};
     }
 
     return {passes: false, causes: ['not a string']};

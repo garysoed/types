@@ -10,7 +10,7 @@ class ElementWithTagType<E extends HTMLElement> extends Type<E> {
     return `Element(${this.tag})`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<E> {
     if (!(target instanceof Element)) {
       return {causes: ['not an Element'], passes: false};
     }
@@ -18,7 +18,7 @@ class ElementWithTagType<E extends HTMLElement> extends Type<E> {
     const tag = this.tag.toLowerCase();
     const hasCorrectTag = target.tagName.toLowerCase() === tag;
     if (hasCorrectTag) {
-      return {passes: true};
+      return {passes: true, value: target as E};
     }
 
     return {causes: [`does not have tag ${tag}`], passes: false};

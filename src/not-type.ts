@@ -12,7 +12,7 @@ class NotType<T, X extends T> extends Type<Exclude<T, X>> {
     return `not(${this.type})`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<Exclude<T, X>> {
     const result = this.type.validate(target);
     if (result.passes) {
       return {
@@ -21,7 +21,7 @@ class NotType<T, X extends T> extends Type<Exclude<T, X>> {
       };
     }
 
-    return {passes: true};
+    return {passes: true, value: target as Exclude<T, X>};
   }
 }
 

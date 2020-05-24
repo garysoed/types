@@ -11,7 +11,7 @@ class SetType<T> extends Type<Set<T>> {
     return `Set<${this.elementType}>`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<Set<T>> {
     if (instanceofType(Set).check(target)) {
       for (const element of target) {
         const result = this.elementType.validate(element);
@@ -26,7 +26,7 @@ class SetType<T> extends Type<Set<T>> {
         }
       }
 
-      return {passes: true};
+      return {passes: true, value: target as Set<T>};
     } else {
       return {causes: ['not a set'], passes: false};
     }

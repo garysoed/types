@@ -12,7 +12,7 @@ class TupleOfType<T extends unknown[]> extends Type<T> {
     return `[${this.spec.map(type => `${type}`).join(', ')}]`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<T> {
     if (!(target instanceof Array)) {
       return {causes: ['not a tuple'], passes: false};
     }
@@ -31,7 +31,7 @@ class TupleOfType<T extends unknown[]> extends Type<T> {
       }
     }
 
-    return {passes: true};
+    return {passes: true, value: target as T};
   }
 }
 

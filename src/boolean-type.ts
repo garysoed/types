@@ -6,10 +6,10 @@ class BooleanType extends Type<boolean> {
     return 'boolean';
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<boolean> {
     const isBoolean = typeof target === 'boolean' || target instanceof Boolean;
     if (isBoolean) {
-      return {passes: true};
+      return {passes: true, value: target as boolean};
     }
 
     return {passes: false, causes: ['not a boolean']};

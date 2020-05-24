@@ -17,7 +17,7 @@ class IterableOfType<T> extends Type<Iterable<T>> {
     return `Iterable<${this.type}>`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<Iterable<T>> {
     try {
       IterableType.assert(target);
     } catch (e) {
@@ -48,7 +48,7 @@ class IterableOfType<T> extends Type<Iterable<T>> {
       }
     }
 
-    return {passes: true};
+    return {passes: true, value: target};
   }
 }
 

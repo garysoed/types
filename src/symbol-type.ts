@@ -6,10 +6,9 @@ class SymbolType extends Type<symbol> {
     return 'symbol';
   }
 
-  validate(target: unknown): ValidationResult {
-    const isSymbol = typeof target === 'symbol';
-    if (isSymbol) {
-      return {passes: true};
+  validate(target: unknown): ValidationResult<symbol> {
+    if (typeof target === 'symbol') {
+      return {passes: true, value: target};
     }
 
     return {passes: false, causes: ['not a symbol']};

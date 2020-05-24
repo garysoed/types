@@ -12,10 +12,10 @@ class InstanceofType<T> extends Type<T> {
     return `(instanceof ${this.ctor.name})`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<T> {
     const passes = target instanceof this.ctor;
     if (passes) {
-      return {passes};
+      return {passes, value: target as T};
     }
 
     return {

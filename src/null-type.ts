@@ -6,10 +6,9 @@ class NullType extends Type<null> {
     return 'null';
   }
 
-  validate(target: unknown): ValidationResult {
-    const isNull = target === null;
-    if (isNull) {
-      return {passes: true};
+  validate(target: unknown): ValidationResult<null> {
+    if (target === null) {
+      return {passes: true, value: target};
     }
 
     return {passes: false, causes: ['not null']};

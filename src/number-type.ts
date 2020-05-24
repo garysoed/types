@@ -6,10 +6,10 @@ class NumberType extends Type<number> {
     return 'number';
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<number> {
     const isNumber = typeof target === 'number' || target instanceof Number;
     if (isNumber) {
-      return {passes: true};
+      return {passes: true, value: target as number};
     }
 
     return {passes: false, causes: ['not a number']};

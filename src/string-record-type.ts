@@ -10,7 +10,7 @@ class StringRecordType<T> extends Type<Record<string, T>> {
     return `{[string]: ${this.valueType}}`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<Record<string, T>> {
     if (!(target instanceof Object)) {
       return {causes: ['not an object'], passes: false};
     }
@@ -36,7 +36,7 @@ class StringRecordType<T> extends Type<Record<string, T>> {
       }
     }
 
-    return {passes: true};
+    return {passes: true, value: target as Record<string, T>};
   }
 }
 

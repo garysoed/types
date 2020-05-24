@@ -32,5 +32,5 @@ export abstract class Type<T> {
    */
   abstract toString(): string;
 
-  abstract validate(target: unknown): ValidationResult;
+  abstract validate(target: unknown): ValidationResult<T>;
 }

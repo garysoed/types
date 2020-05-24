@@ -11,7 +11,7 @@ export class ArrayOfType<T> extends Type<T[]> {
     return `${this.elementType}[]`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<T[]> {
     if (instanceofType(Array).check(target)) {
       for (const element of target) {
         const result = this.elementType.validate(element);
@@ -26,7 +26,7 @@ export class ArrayOfType<T> extends Type<T[]> {
         }
       }
 
-      return {passes: true};
+      return {passes: true, value: target as T[]};
     } else {
       return {causes: ['not an array'], passes: false};
     }

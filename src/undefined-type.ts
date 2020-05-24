@@ -6,10 +6,9 @@ class UndefinedType extends Type<undefined> {
     return 'undefined';
   }
 
-  validate(target: unknown): ValidationResult {
-    const isUndefined = target === undefined;
-    if (isUndefined) {
-      return {passes: true};
+  validate(target: unknown): ValidationResult<undefined> {
+    if (target === undefined) {
+      return {passes: true, value: target};
     }
 
     return {passes: false, causes: ['not undefined']};

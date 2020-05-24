@@ -19,7 +19,7 @@ class HasPropertiesType<O extends {}> extends Type<O> {
     return `{${entries.join(', ')}}`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<O> {
     if (!(target instanceof Object)) {
       return {causes: ['not an object'], passes: false};
     }
@@ -63,7 +63,7 @@ class HasPropertiesType<O extends {}> extends Type<O> {
       }
     }
 
-    return {passes: true};
+    return {passes: true, value: target as O};
   }
 }
 

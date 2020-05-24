@@ -11,9 +11,9 @@ class EqualType<T> extends Type<T> {
     return `${this.value}`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<T> {
     if (target === this.value) {
-      return {passes: true};
+      return {passes: true, value: target as T};
     }
 
     return {causes: [`not equal to ${this.value}`], passes: false};

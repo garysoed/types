@@ -5,7 +5,7 @@ import { TypeAssertionError } from './type-assertion-error';
 import { ValidationResult } from './validation-result';
 
 class TestType extends Type<number> {
-  constructor(private readonly result: ValidationResult) {
+  constructor(private readonly result: ValidationResult<number>) {
     super();
   }
 
@@ -13,7 +13,7 @@ class TestType extends Type<number> {
     return 'TestType';
   }
 
-  validate(): ValidationResult {
+  validate(): ValidationResult<number> {
     return this.result;
   }
 }
@@ -40,7 +40,7 @@ test('@types/core/type', () => {
     });
 
     should(`not throw error if validation passes`, () => {
-      const type: Type<number> = new TestType({passes: true});
+      const type: Type<number> = new TestType({passes: true, value: 1});
 
       assert(() => type.assert(1)).toNot.throw();
     });
@@ -48,7 +48,7 @@ test('@types/core/type', () => {
 
   test('check', () => {
     should(`return true if validation passes`, () => {
-      const type = new TestType({passes: true});
+      const type = new TestType({passes: true, value: 1});
 
       assert(type.check(1)).to.beTrue();
     });

@@ -12,7 +12,7 @@ class IntersectType<T> extends Type<T> {
     return `(${typesString})`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<T> {
     for (const subtype of this.types) {
       const result = subtype.validate(target);
       if (!result.passes) {
@@ -26,7 +26,7 @@ class IntersectType<T> extends Type<T> {
       }
     }
 
-    return {passes: true};
+    return {passes: true, value: target as T};
   }
 }
 

@@ -6,8 +6,8 @@ class UnknownType extends Type<unknown> {
     return '(unknown)';
   }
 
-  validate(): ValidationResult {
-    return {passes: true};
+  validate(value: unknown): ValidationResult<unknown> {
+    return {passes: true, value};
   }
 }
 

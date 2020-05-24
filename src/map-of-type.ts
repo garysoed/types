@@ -17,7 +17,7 @@ class MapType<K, V> extends Type<Map<K, V>> {
     return `Map<${this.keyType}, ${this.valueType}>`;
   }
 
-  validate(target: unknown): ValidationResult {
+  validate(target: unknown): ValidationResult<Map<K, V>> {
     if (instanceofType(Map).check(target)) {
       for (const entry of target) {
         const result = this.entryType.validate(entry);
@@ -32,7 +32,7 @@ class MapType<K, V> extends Type<Map<K, V>> {
         }
       }
 
-      return {passes: true};
+      return {passes: true, value: target as Map<K, V>};
     } else {
       return {causes: ['not a map'], passes: false};
     }
