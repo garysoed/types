@@ -1,5 +1,6 @@
-import { booleanType } from './boolean-type';
 import { Type } from '../core/type';
+
+import { booleanType } from './boolean-type';
 import { numberType } from './number-type';
 import { stringType } from './string-type';
 import { symbolType } from './symbol-type';

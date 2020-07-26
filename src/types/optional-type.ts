@@ -1,4 +1,5 @@
 import { Type } from '../core/type';
+
 import { undefinedType } from './undefined-type';
 import { unionType } from './union-type';
 

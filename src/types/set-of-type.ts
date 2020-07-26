@@ -1,9 +1,10 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
+
 import { instanceofType } from './instanceof-type';
 
-class SetType<T> extends Type<Set<T>> {
-  constructor(private readonly elementType: Type<T>) {
+export class SetOfType<T> extends Type<Set<T>> {
+  constructor(readonly elementType: Type<T>) {
     super();
   }
 
@@ -41,5 +42,5 @@ class SetType<T> extends Type<Set<T>> {
  * @return The set type.
  */
 export function setOfType<T>(type: Type<T>): Type<Set<T>> {
-  return new SetType(type);
+  return new SetOfType(type);
 }

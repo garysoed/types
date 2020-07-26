@@ -4,7 +4,7 @@ import { ValidationResult } from '../core/validation-result';
 import { instanceofType } from './instanceof-type';
 
 export class ArrayOfType<T> extends Type<T[]> {
-  constructor(private readonly elementType: Type<T>) {
+  constructor(readonly elementType: Type<T>) {
     super();
   }
 

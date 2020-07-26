@@ -1,7 +1,7 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class BooleanType extends Type<boolean> {
+export class BooleanType extends Type<boolean> {
   toString(): string {
     return 'boolean';
   }

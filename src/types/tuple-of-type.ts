@@ -3,8 +3,8 @@ import { ValidationResult } from '../core/validation-result';
 
 type TypeOf<T> = {[K in keyof T]: Type<T[K]>};
 
-class TupleOfType<T extends unknown[]> extends Type<T> {
-  constructor(private readonly spec: TypeOf<T>) {
+export class TupleOfType<T extends unknown[]> extends Type<T> {
+  constructor(readonly spec: TypeOf<T>) {
     super();
   }
 

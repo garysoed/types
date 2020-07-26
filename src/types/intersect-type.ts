@@ -1,8 +1,8 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class IntersectType<T> extends Type<T> {
-  constructor(private readonly types: ReadonlyArray<Type<unknown>>) {
+export class IntersectType<T> extends Type<T> {
+  constructor(readonly types: ReadonlyArray<Type<unknown>>) {
     super();
   }
 

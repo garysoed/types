@@ -1,7 +1,7 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class SymbolType extends Type<symbol> {
+export class SymbolType extends Type<symbol> {
   toString(): string {
     return 'symbol';
   }

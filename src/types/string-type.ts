@@ -1,7 +1,7 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class StringType extends Type<string> {
+export class StringType extends Type<string> {
   toString(): string {
     return 'string';
   }

@@ -1,11 +1,10 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class EqualType<T> extends Type<T> {
-  constructor(private readonly value: T) {
+export class EqualType<T> extends Type<T> {
+  constructor(readonly value: T) {
     super();
   }
-
 
   toString(): string {
     return `${this.value}`;

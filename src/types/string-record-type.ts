@@ -1,8 +1,8 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class StringRecordType<T> extends Type<Record<string, T>> {
-  constructor(private readonly valueType: Type<T>) {
+export class StringRecordType<T> extends Type<Record<string, T>> {
+  constructor(readonly valueType: Type<T>) {
     super();
   }
 

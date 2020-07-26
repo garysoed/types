@@ -8,8 +8,8 @@ interface Enum {
   [key: number]: string;
 }
 
-class EnumType<E> extends Type<E> {
-  constructor(private readonly enumType: Enum) {
+export class EnumType<E> extends Type<E> {
+  constructor(readonly enumSet: Enum) {
     super();
   }
 
@@ -18,8 +18,8 @@ class EnumType<E> extends Type<E> {
   }
 
   validate(target: unknown): ValidationResult<E> {
-    for (const key in this.enumType) {
-      if (this.enumType[key] === target) {
+    for (const key in this.enumSet) {
+      if (this.enumSet[key] === target) {
         return {passes: true, value: target as unknown as E};
       }
     }

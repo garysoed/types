@@ -1,9 +1,9 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
 
-class HasPropertiesType<O extends {}> extends Type<O> {
+export class HasPropertiesType<O extends {}> extends Type<O> {
   constructor(
-      private readonly spec: {[K in keyof O]: Type<O[K]>},
+      readonly spec: {[K in keyof O]: Type<O[K]>},
   ) {
     super();
   }

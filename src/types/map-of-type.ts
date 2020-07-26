@@ -1,14 +1,15 @@
 import { Type } from '../core/type';
 import { ValidationResult } from '../core/validation-result';
+
 import { instanceofType } from './instanceof-type';
 import { tupleOfType } from './tuple-of-type';
 
-class MapType<K, V> extends Type<Map<K, V>> {
+export class MapOfType<K, V> extends Type<Map<K, V>> {
   private readonly entryType: Type<[K, V]> = tupleOfType<[K, V]>([this.keyType, this.valueType]);
 
   constructor(
-      private readonly keyType: Type<K>,
-      private readonly valueType: Type<V>,
+      readonly keyType: Type<K>,
+      readonly valueType: Type<V>,
   ) {
     super();
   }
@@ -49,5 +50,5 @@ class MapType<K, V> extends Type<Map<K, V>> {
  * @return The map type.
  */
 export function mapOfType<K, V>(keyType: Type<K>, valueType: Type<V>): Type<Map<K, V>> {
-  return new MapType(keyType, valueType);
+  return new MapOfType(keyType, valueType);
 }

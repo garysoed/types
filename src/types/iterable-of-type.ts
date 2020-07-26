@@ -1,6 +1,7 @@
 import { Type } from '../core/type';
 import { TypeAssertionError } from '../core/type-assertion-error';
 import { ValidationResult } from '../core/validation-result';
+
 import { hasPropertiesType } from './has-properties-type';
 import { instanceofType } from './instanceof-type';
 
@@ -8,8 +9,8 @@ const IterableType: Type<Iterable<any>> = hasPropertiesType<Iterable<any>>(
     {[Symbol.iterator]: instanceofType(Function)},
 );
 
-class IterableOfType<T> extends Type<Iterable<T>> {
-  constructor(private readonly type: Type<T>) {
+export class IterableOfType<T> extends Type<Iterable<T>> {
+  constructor(readonly type: Type<T>) {
     super();
   }
 
