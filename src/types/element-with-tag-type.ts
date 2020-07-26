@@ -1,5 +1,5 @@
-import { Type } from './core/type';
-import { ValidationResult } from './core/validation-result';
+import { Type } from '../core/type';
+import { ValidationResult } from '../core/validation-result';
 
 class ElementWithTagType<E extends HTMLElement> extends Type<E> {
   constructor(private readonly tag: string) {

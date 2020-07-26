@@ -1,5 +1,5 @@
-import { Type } from './core/type';
-import { ValidationResult } from './core/validation-result';
+import { Type } from '../core/type';
+import { ValidationResult } from '../core/validation-result';
 
 class UnionType<T> extends Type<T> {
   constructor(private readonly types: ReadonlyArray<Type<unknown>>) {

@@ -1,5 +1,5 @@
-import { Type } from './core/type';
-import { ValidationResult } from './core/validation-result';
+import { Type } from '../core/type';
+import { ValidationResult } from '../core/validation-result';
 
 class NotType<T, X extends T> extends Type<Exclude<T, X>> {
   constructor(

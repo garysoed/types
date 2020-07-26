@@ -1,4 +1,4 @@
-import { Type } from './core/type';
+import { Type } from '../core/type';
 import { nullType } from './null-type';
 import { unionType as unionType } from './union-type';
 

@@ -1,18 +1,19 @@
-import { Type } from './core/type';
-import { ValidationResult } from './core/validation-result';
+import { Type } from '../core/type';
+import { ValidationResult } from '../core/validation-result';
+
 import { instanceofType } from './instanceof-type';
 
-class SetType<T> extends Type<Set<T>> {
+export class ArrayOfType<T> extends Type<T[]> {
   constructor(private readonly elementType: Type<T>) {
     super();
   }
 
   toString(): string {
-    return `Set<${this.elementType}>`;
+    return `${this.elementType}[]`;
   }
 
-  validate(target: unknown): ValidationResult<Set<T>> {
-    if (instanceofType(Set).check(target)) {
+  validate(target: unknown): ValidationResult<T[]> {
+    if (instanceofType(Array).check(target)) {
       for (const element of target) {
         const result = this.elementType.validate(element);
         if (!result.passes) {
@@ -26,20 +27,20 @@ class SetType<T> extends Type<Set<T>> {
         }
       }
 
-      return {passes: true, value: target as Set<T>};
+      return {passes: true, value: target as T[]};
     } else {
-      return {causes: ['not a set'], passes: false};
+      return {causes: ['not an array'], passes: false};
     }
   }
 }
 
 /**
- * Checks if the elements of the given set are all of the given type.
+ * Checks if the elements of the given array are all of the given type.
  *
  * @param type Type of the elements.
  * @param <T> Type of the element.
- * @return The set type.
+ * @return The array type.
  */
-export function setOfType<T>(type: Type<T>): Type<Set<T>> {
-  return new SetType(type);
+export function arrayOfType<T>(type: Type<T>): Type<T[]> {
+  return new ArrayOfType(type);
 }

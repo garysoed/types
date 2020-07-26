@@ -1,6 +1,6 @@
-import { Type } from './core/type';
-import { TypeAssertionError } from './core/type-assertion-error';
-import { ValidationResult } from './core/validation-result';
+import { Type } from '../core/type';
+import { TypeAssertionError } from '../core/type-assertion-error';
+import { ValidationResult } from '../core/validation-result';
 import { hasPropertiesType } from './has-properties-type';
 import { instanceofType } from './instanceof-type';
 

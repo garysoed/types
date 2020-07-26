@@ -1,5 +1,5 @@
-import { Type } from './core/type';
-import { ValidationResult } from './core/validation-result';
+import { Type } from '../core/type';
+import { ValidationResult } from '../core/validation-result';
 
 class StringRecordType<T> extends Type<Record<string, T>> {
   constructor(private readonly valueType: Type<T>) {
