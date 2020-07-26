@@ -14,7 +14,7 @@ test('@types/number-type', () => {
 
     should('not pass otherwise', () => {
       assert(numberType.validate('string')).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a number/),
         ]),
         passes: false,

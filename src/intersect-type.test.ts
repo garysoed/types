@@ -27,7 +27,7 @@ test('@types/intersect-type', () => {
       ]);
       const target = {[name1]: true, [name2]: 'value'};
       assert(type.validate(target)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a {name2: boolean}/),
           stringThat().match(/property name2 is not of type boolean/),
           stringThat().match(/not a boolean/),

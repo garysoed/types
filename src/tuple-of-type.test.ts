@@ -13,7 +13,7 @@ test('@types/tuple-of-type', () => {
 
     should(`not pass if the tuple element has the wrong type`, () => {
       assert(tupleOfType([numberType, stringType]).validate([1, 2])).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/element 1 is not a string/),
           stringThat().match(/not a string/),
         ]),
@@ -23,7 +23,7 @@ test('@types/tuple-of-type', () => {
 
     should(`not pass if the target is not an Object`, () => {
       assert(tupleOfType([numberType, stringType]).validate(123)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a tuple/),
         ]),
         passes: false,

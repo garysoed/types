@@ -26,7 +26,7 @@ test('@types/map-of-type', () => {
       ]));
 
       assert(result).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/entry with key 2 is not/),
           stringThat().match(/element 0 is not a number/),
           stringThat().match(/not a number/),
@@ -43,7 +43,7 @@ test('@types/map-of-type', () => {
       ]));
 
       assert(result).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/entry with key 2 is not/),
           stringThat().match(/element 1 is not a string/),
           stringThat().match(/not a string/),
@@ -56,7 +56,7 @@ test('@types/map-of-type', () => {
       const result = mapOfType(numberType, stringType).validate([1, 2, 3]);
 
       assert(result).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a map/),
         ]),
         passes: false,

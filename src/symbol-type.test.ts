@@ -10,7 +10,7 @@ test('@types/symbol-type', () => {
 
     should('not pass otherwise', () => {
       assert(symbolType.validate(true)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a symbol/),
         ]),
         passes: false,

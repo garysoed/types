@@ -11,7 +11,7 @@ test('@types/iterable-of-type', () => {
 
     should(`not pass if one of the elements is of the wrong type`, () => {
       assert(iterableOfType(numberType).validate([1, '2', 3])).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/item 1 is not a number/),
           stringThat().match(/not a number/),
         ]),
@@ -21,7 +21,7 @@ test('@types/iterable-of-type', () => {
 
     should(`not pass if not an iterable`, () => {
       assert(iterableOfType(numberType).validate(123)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not an Iterable<number>/),
           stringThat().match(/not an object/),
         ]),

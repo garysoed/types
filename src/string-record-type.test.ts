@@ -17,7 +17,7 @@ test('@types/string-record-type', () => {
       const result = stringRecordType(numberType).validate({a: 1, b: 'b', c: 3});
 
       assert(result).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/b is not of type number/),
           stringThat().match(/not a number/),
         ]),
@@ -29,7 +29,7 @@ test('@types/string-record-type', () => {
       const result = stringRecordType(numberType).validate(123);
 
       assert(result).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not an object/),
         ]),
         passes: false,

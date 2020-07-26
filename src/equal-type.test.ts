@@ -10,7 +10,7 @@ test('@types/equal-type', () => {
 
     should(`not pass if the test value is different from the given value`, () => {
       assert(equalType(2).validate(1)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not equal to 2/),
         ]),
         passes: false,

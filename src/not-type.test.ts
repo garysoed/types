@@ -12,7 +12,7 @@ test('@types/not-type', () => {
 
     should(`false if the target is not null`, () => {
       assert(notType(numberType).validate(123)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           'is a number',
         ]),
         passes: false,

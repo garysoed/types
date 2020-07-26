@@ -15,7 +15,7 @@ test('@types/nullable-type', () => {
 
     should(`not pass if the type is not the inner type or null`, () => {
       assert(nullableType(numberType).validate('abc')).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a number/),
           stringThat().match(/>   not a number/),
           stringThat().match(/not a null/),

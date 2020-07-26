@@ -14,7 +14,7 @@ test('@types/boolean-type', () => {
 
     should('should not pass otherwise', () => {
       assert(booleanType.validate(123)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a boolean/),
         ]),
         passes: false,

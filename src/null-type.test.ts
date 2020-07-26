@@ -10,7 +10,7 @@ test('@types/null-type', () => {
 
     should(`false if the target is not null`, () => {
       assert(nullType.validate('blah')).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not null/),
         ]),
         passes: false,

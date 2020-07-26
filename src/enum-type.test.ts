@@ -25,7 +25,7 @@ test('@types/enum-type', () => {
       enum Test2 { A, B, C }
 
       assert(enumType(Test).validate(Test2.C)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/incorrect enum value/),
         ]),
         passes: false,

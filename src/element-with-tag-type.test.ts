@@ -22,7 +22,7 @@ test('@types/element-with-tag-type', () => {
       const element = document.createElement('input');
 
       assert(elementWithTagType('div').validate(element)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/does not have tag div/),
         ]),
         passes: false,
@@ -33,7 +33,7 @@ test('@types/element-with-tag-type', () => {
       const element = {};
 
       assert(elementWithTagType('div').validate(element)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not an Element/),
         ]),
         passes: false,

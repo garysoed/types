@@ -13,7 +13,7 @@ test('@types/set-of-type', () => {
 
     should('should not pass if an element in the set does not pass the given type', () => {
       assert(setOfType(stringType).validate(new Set(['a', 1, 'c']))).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/1 is not of type string/),
           stringThat().match(/not a string/),
         ]),
@@ -23,7 +23,7 @@ test('@types/set-of-type', () => {
 
     should('should not pass if not a set', () => {
       assert(setOfType(stringType).validate(['a', 1, 'c'])).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a set/),
         ]),
         passes: false,

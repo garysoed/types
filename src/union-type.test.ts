@@ -22,7 +22,7 @@ test('@types/union-type', () => {
       ]);
       const target = {[name]: 123, other: 'value'};
       assert(type.validate(target)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a {name1: boolean}/),
           stringThat().match(/property name1 is not of type boolean/),
           stringThat().match(/not a boolean/),
@@ -34,7 +34,7 @@ test('@types/union-type', () => {
     should('not pass if there are no requirements', () => {
       const target = {name1: true, name2: 'value'};
       assert(unionType().validate(target)).to.haveProperties({
-        causes: arrayThat().beEmpty(),
+        causes: arrayThat<string>().beEmpty(),
         passes: false,
       });
     });

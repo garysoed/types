@@ -23,7 +23,7 @@ test('@types/native-type', () => {
 
     should('not pass otherwise', () => {
       assert(nativeType.validate({})).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a boolean/),
           stringThat().match(/>   not a boolean/),
           stringThat().match(/not a number/),

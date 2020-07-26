@@ -14,7 +14,7 @@ test('@types/has-properties-type', () => {
     should(`not pass if one of the properties has the wrong type`, () => {
       assert(hasPropertiesType({a: numberType, b: stringType}).validate({a: 1, b: 2})).to
           .haveProperties({
-            causes: arrayThat().haveExactElements([
+            causes: arrayThat<string>().haveExactElements([
               stringThat().match(/property b is not of type string/),
               stringThat().match(/not a string/),
             ]),
@@ -25,7 +25,7 @@ test('@types/has-properties-type', () => {
     should(`not pass if one of the properties is missing`, () => {
       assert(hasPropertiesType({a: numberType, b: stringType}).validate({a: 1})).to
           .haveProperties({
-            causes: arrayThat().haveExactElements([
+            causes: arrayThat<string>().haveExactElements([
               stringThat().match(/property b is not of type string/),
               stringThat().match(/not a string/),
             ]),
@@ -36,7 +36,7 @@ test('@types/has-properties-type', () => {
     should(`not pass if target is null`, () => {
       assert(hasPropertiesType({a: numberType, b: stringType}).validate(null)).to
           .haveProperties({
-            causes: arrayThat().haveExactElements([
+            causes: arrayThat<string>().haveExactElements([
               stringThat().match(/not an object/),
             ]),
             passes: false,
@@ -46,7 +46,7 @@ test('@types/has-properties-type', () => {
     should(`not pass if target is a number`, () => {
       assert(hasPropertiesType({a: numberType, b: stringType}).validate(123)).to
           .haveProperties({
-            causes: arrayThat().haveExactElements([
+            causes: arrayThat<string>().haveExactElements([
               stringThat().match(/not an object/),
             ]),
             passes: false,

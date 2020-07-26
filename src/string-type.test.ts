@@ -14,7 +14,7 @@ test('@types/string-type', () => {
 
     should('not pass otherwise', () => {
       assert(stringType.validate(Symbol('symbol'))).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a string/),
         ]),
         passes: false,

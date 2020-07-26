@@ -10,7 +10,7 @@ test('@types/instanceof-type', () => {
 
     should('not pass if the target is not an instance of the given constructor', () => {
       assert(instanceofType(Array).validate(123)).to.haveProperties({
-        causes: arrayThat().haveExactElements([
+        causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not an instance of Array/),
         ]),
         passes: false,
