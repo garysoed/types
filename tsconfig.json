@@ -20,6 +20,5 @@
   },
   "include": [
     "src/**/*.ts",
-    "node_modules/gs-testing/export/*.ts"
   ],
 }
