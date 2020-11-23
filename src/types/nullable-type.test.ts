@@ -19,7 +19,7 @@ test('@types/nullable-type', () => {
           stringThat().match(/not a number/),
           stringThat().match(/> {3}not a number/),
           stringThat().match(/not a null/),
-          stringThat().match(/> {3}not null/),
+          stringThat().match(/> {3}not equal to null/),
         ]),
         passes: false,
       });
