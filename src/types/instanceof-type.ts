@@ -30,6 +30,8 @@ class InstanceofType<T> extends Type<T> {
  * @param ctor Ctor to check the type.
  * @return The instanceof type.
  */
+export function instanceofType<T extends Function>(type: typeof Function): Type<T>;
+export function instanceofType<T>(ctor: (new (...args: any[]) => T) | Function): Type<T>;
 export function instanceofType<T>(ctor: (new (...args: any[]) => T) | Function): Type<T> {
   return new InstanceofType(ctor);
 }

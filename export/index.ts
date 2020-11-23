@@ -15,6 +15,7 @@ export {nullableType} from '../src/types/nullable-type';
 export {numberType} from '../src/types/number-type';
 export {optionalType} from '../src/types/optional-type';
 export {setOfType} from '../src/types/set-of-type';
+export {stringRecordType} from '../src/types/string-record-type';
 export {stringType} from '../src/types/string-type';
 export {symbolType} from '../src/types/symbol-type';
 export {tupleOfType} from '../src/types/tuple-of-type';
