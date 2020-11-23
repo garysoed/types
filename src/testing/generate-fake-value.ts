@@ -1,21 +1,21 @@
-import { Type } from '../core/type';
-import { ArrayOfType, arrayOfType } from '../types/array-of-type';
-import { BooleanType } from '../types/boolean-type';
-import { ElementWithTagType } from '../types/element-with-tag-type';
-import { EnumType } from '../types/enum-type';
-import { EqualType } from '../types/equal-type';
-import { HasPropertiesType } from '../types/has-properties-type';
-import { IntersectType } from '../types/intersect-type';
-import { IterableOfType } from '../types/iterable-of-type';
-import { MapOfType } from '../types/map-of-type';
-import { NumberType, numberType } from '../types/number-type';
-import { SetOfType } from '../types/set-of-type';
-import { StringRecordType } from '../types/string-record-type';
-import { StringType, stringType } from '../types/string-type';
-import { SymbolType } from '../types/symbol-type';
-import { TupleOfType, tupleOfType } from '../types/tuple-of-type';
-import { UndefinedType } from '../types/undefined-type';
-import { UnionType } from '../types/union-type';
+import {Type} from '../core/type';
+import {ArrayOfType, arrayOfType} from '../types/array-of-type';
+import {BooleanType} from '../types/boolean-type';
+import {ElementWithTagType} from '../types/element-with-tag-type';
+import {EnumType} from '../types/enum-type';
+import {EqualType} from '../types/equal-type';
+import {HasPropertiesType} from '../types/has-properties-type';
+import {IntersectType} from '../types/intersect-type';
+import {IterableOfType} from '../types/iterable-of-type';
+import {MapOfType} from '../types/map-of-type';
+import {NumberType, numberType} from '../types/number-type';
+import {SetOfType} from '../types/set-of-type';
+import {StringRecordType} from '../types/string-record-type';
+import {StringType, stringType} from '../types/string-type';
+import {SymbolType} from '../types/symbol-type';
+import {TupleOfType, tupleOfType} from '../types/tuple-of-type';
+import {UndefinedType} from '../types/undefined-type';
+import {UnionType} from '../types/union-type';
 
 const MIN_ARRAY_SIZE = 1;
 const MAX_ARRAY_SIZE = 3;
@@ -55,7 +55,7 @@ export function generateFakeValue(type: Type<any>): any {
     return [generateFakeValue(type.type)];
   } else if (type instanceof MapOfType) {
     return new Map(
-      generateFakeValue(arrayOfType(tupleOfType<[any, any]>([type.keyType, type.valueType]))),
+        generateFakeValue(arrayOfType(tupleOfType<[any, any]>([type.keyType, type.valueType]))),
     );
   } else if (type instanceof NumberType) {
     return Math.floor(Math.random() * 1000);

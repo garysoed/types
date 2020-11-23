@@ -1,11 +1,11 @@
-import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
+import {arrayThat, assert, should, stringThat, test} from 'gs-testing';
 
-import { enumType } from './enum-type';
+import {enumType} from './enum-type';
 
 
 test('@types/enum-type', () => {
   test('validate', () => {
-    should(`pass if the value is in the enum`, () => {
+    should('pass if the value is in the enum', () => {
       /**
        * @test
        */
@@ -13,7 +13,7 @@ test('@types/enum-type', () => {
       assert(enumType(Test).validate(Test.A)).to.haveProperties({passes: true});
     });
 
-    should(`not pass if the value is not in the enum`, () => {
+    should('not pass if the value is not in the enum', () => {
       /**
        * @test
        */

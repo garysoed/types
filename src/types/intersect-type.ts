@@ -1,5 +1,5 @@
-import { Type } from '../core/type';
-import { ValidationResult } from '../core/validation-result';
+import {Type} from '../core/type';
+import {ValidationResult} from '../core/validation-result';
 
 export class IntersectType<T> extends Type<T> {
   constructor(readonly types: ReadonlyArray<Type<unknown>>) {

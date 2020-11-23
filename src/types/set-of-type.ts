@@ -1,7 +1,7 @@
-import { Type } from '../core/type';
-import { ValidationResult } from '../core/validation-result';
+import {Type} from '../core/type';
+import {ValidationResult} from '../core/validation-result';
 
-import { instanceofType } from './instanceof-type';
+import {instanceofType} from './instanceof-type';
 
 export class SetOfType<T> extends Type<Set<T>> {
   constructor(readonly elementType: Type<T>) {

@@ -1,15 +1,15 @@
-import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
+import {arrayThat, assert, should, stringThat, test} from 'gs-testing';
 
-import { iterableOfType } from './iterable-of-type';
-import { numberType } from './number-type';
+import {iterableOfType} from './iterable-of-type';
+import {numberType} from './number-type';
 
 test('@types/iterable-of-type', () => {
   test('validate', () => {
-    should(`pass if the target is an iterable with the correct elements`, () => {
+    should('pass if the target is an iterable with the correct elements', () => {
       assert(iterableOfType(numberType).validate([1, 2, 3])).to.haveProperties({passes: true});
     });
 
-    should(`not pass if one of the elements is of the wrong type`, () => {
+    should('not pass if one of the elements is of the wrong type', () => {
       assert(iterableOfType(numberType).validate([1, '2', 3])).to.haveProperties({
         causes: arrayThat<string>().haveExactElements([
           stringThat().match(/item 1 is not a number/),
@@ -19,7 +19,7 @@ test('@types/iterable-of-type', () => {
       });
     });
 
-    should(`not pass if not an iterable`, () => {
+    should('not pass if not an iterable', () => {
       assert(iterableOfType(numberType).validate(123)).to.haveProperties({
         causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not an Iterable<number>/),

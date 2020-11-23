@@ -1,7 +1,6 @@
+import {arrayThat, assert, should, stringThat, test} from 'gs-testing';
 
-import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
-
-import { nativeType } from './native-type';
+import {nativeType} from './native-type';
 
 test('@types/native-type', () => {
   test('validate', () => {
@@ -25,15 +24,15 @@ test('@types/native-type', () => {
       assert(nativeType.validate({})).to.haveProperties({
         causes: arrayThat<string>().haveExactElements([
           stringThat().match(/not a boolean/),
-          stringThat().match(/>   not a boolean/),
+          stringThat().match(/> {3}not a boolean/),
           stringThat().match(/not a number/),
-          stringThat().match(/>   not a number/),
+          stringThat().match(/> {3}not a number/),
           stringThat().match(/not a string/),
-          stringThat().match(/>   not a string/),
+          stringThat().match(/> {3}not a string/),
           stringThat().match(/not a symbol/),
-          stringThat().match(/>   not a symbol/),
+          stringThat().match(/> {3}not a symbol/),
           stringThat().match(/not a undefined/),
-          stringThat().match(/>   not undefined/),
+          stringThat().match(/> {3}not undefined/),
         ]),
         passes: false,
       });

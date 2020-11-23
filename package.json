@@ -18,7 +18,12 @@
   "homepage": "https://github.com/garysoed/gs-types#readme",
   "devDependencies": {
     "@types/jasmine": "^2.8.7",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
     "awesome-typescript-loader": "^5.0.0",
+    "eslint": "^7.14.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
     "jasmine-core": "^3.1.0",
     "karma": "^2.0.2",
     "karma-chrome-launcher": "^2.2.0",

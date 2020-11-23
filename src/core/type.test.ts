@@ -1,8 +1,8 @@
-import { assert, should, test } from 'gs-testing';
+import {assert, should, test} from 'gs-testing';
 
-import { Type } from './type';
-import { TypeAssertionError } from './type-assertion-error';
-import { ValidationResult } from './validation-result';
+import {Type} from './type';
+import {TypeAssertionError} from './type-assertion-error';
+import {ValidationResult} from './validation-result';
 
 class TestType extends Type<number> {
   constructor(private readonly result: ValidationResult<number>) {
@@ -20,7 +20,7 @@ class TestType extends Type<number> {
 
 test('@types/core/type', () => {
   test('assert', () => {
-    should(`throw error if validation does not pass`, () => {
+    should('throw error if validation does not pass', () => {
       const cause1 = 'cause1';
       const cause2 = 'cause2';
       const type: Type<number> = new TestType({causes: [cause1, cause2], passes: false});
@@ -39,7 +39,7 @@ test('@types/core/type', () => {
       ]);
     });
 
-    should(`not throw error if validation passes`, () => {
+    should('not throw error if validation passes', () => {
       const type: Type<number> = new TestType({passes: true, value: 1});
 
       assert(() => type.assert(1)).toNot.throw();
@@ -47,13 +47,13 @@ test('@types/core/type', () => {
   });
 
   test('check', () => {
-    should(`return true if validation passes`, () => {
+    should('return true if validation passes', () => {
       const type = new TestType({passes: true, value: 1});
 
       assert(type.check(1)).to.beTrue();
     });
 
-    should(`return false if validation does not pass`, () => {
+    should('return false if validation does not pass', () => {
       const type = new TestType({causes: [], passes: false});
 
       assert(type.check(1)).to.beFalse();

@@ -1,6 +1,6 @@
-import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
+import {arrayThat, assert, should, stringThat, test} from 'gs-testing';
 
-import { booleanType } from './boolean-type';
+import {booleanType} from './boolean-type';
 
 test('@types/boolean-type', () => {
   test('validate', () => {

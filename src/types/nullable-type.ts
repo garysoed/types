@@ -1,7 +1,7 @@
-import { Type } from '../core/type';
+import {Type} from '../core/type';
 
-import { nullType } from './null-type';
-import { unionType as unionType } from './union-type';
+import {nullType} from './null-type';
+import {unionType as unionType} from './union-type';
 
 /**
  * Creates a nullable type. Shortcut to UnionType([type, nullType]).

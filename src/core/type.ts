@@ -1,5 +1,5 @@
-import { TypeAssertionError } from './type-assertion-error';
-import { ValidationResult } from './validation-result';
+import {TypeAssertionError} from './type-assertion-error';
+import {ValidationResult} from './validation-result';
 
 /**
  * Represents a type used for type checking.
@@ -23,7 +23,7 @@ export abstract class Type<T> {
    * @param target Target to check.
    * @return True iff the target is of type T.
    */
-  check(target: any): target is T {
+  check(target: unknown): target is T {
     return this.validate(target).passes;
   }
 

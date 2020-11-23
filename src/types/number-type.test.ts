@@ -1,6 +1,6 @@
-import { arrayThat, assert, should, stringThat, test } from 'gs-testing';
+import {arrayThat, assert, should, stringThat, test} from 'gs-testing';
 
-import { numberType } from './number-type';
+import {numberType} from './number-type';
 
 test('@types/number-type', () => {
   test('validate', () => {

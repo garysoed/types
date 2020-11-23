@@ -1,5 +1,5 @@
-import { Type } from '../core/type';
-import { ValidationResult } from '../core/validation-result';
+import {Type} from '../core/type';
+import {ValidationResult} from '../core/validation-result';
 
 class InstanceofType<T> extends Type<T> {
   constructor(

@@ -1,5 +1,5 @@
-import { Type } from '../core/type';
-import { ValidationResult } from '../core/validation-result';
+import {Type} from '../core/type';
+import {ValidationResult} from '../core/validation-result';
 
 /**
  * Represents an enum.
@@ -14,7 +14,7 @@ export class EnumType<E> extends Type<E> {
   }
 
   toString(): string {
-    return `Enum`;
+    return 'Enum';
   }
 
   validate(target: unknown): ValidationResult<E> {
@@ -24,7 +24,7 @@ export class EnumType<E> extends Type<E> {
       }
     }
 
-    return {causes: [`incorrect enum value`], passes: false};
+    return {causes: ['incorrect enum value'], passes: false};
   }
 }
 
