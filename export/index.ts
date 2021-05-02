@@ -3,6 +3,7 @@ export {booleanType} from '../src/types/boolean-type';
 export {elementWithTagType} from '../src/types/element-with-tag-type';
 export {enumType} from '../src/types/enum-type';
 export {equalType} from '../src/types/equal-type';
+export {fromProviderType} from '../src/types/from-provider-type';
 export {hasPropertiesType} from '../src/types/has-properties-type';
 export {instanceofType} from '../src/types/instanceof-type';
 export {intersectType} from '../src/types/intersect-type';
