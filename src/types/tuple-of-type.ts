@@ -1,9 +1,9 @@
 import {Type} from '../core/type';
 import {ValidationResult} from '../core/validation-result';
 
-type TypeOf<T> = {[K in keyof T]: Type<T[K]>};
+type TypeOf<T extends readonly unknown[]> = {[K in keyof T]: Type<T[K]>};
 
-export class TupleOfType<T extends unknown[]> extends Type<T> {
+export class TupleOfType<T extends readonly unknown[]> extends Type<T> {
   constructor(readonly spec: TypeOf<T>) {
     super();
   }
@@ -31,7 +31,7 @@ export class TupleOfType<T extends unknown[]> extends Type<T> {
       }
     }
 
-    return {passes: true, value: target as T};
+    return {passes: true, value: target as unknown as T};
   }
 }
 
@@ -39,6 +39,6 @@ export class TupleOfType<T extends unknown[]> extends Type<T> {
  * Creates a tuple type.
  * @param spec Types of the tuple values.
  */
-export function tupleOfType<T extends unknown[]>(spec: TypeOf<T>): Type<T> {
+export function tupleOfType<T extends readonly unknown[]>(spec: TypeOf<T>): Type<T> {
   return new TupleOfType(spec);
 }

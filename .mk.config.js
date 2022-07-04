@@ -1,6 +1,6 @@
 declare({
   name: 'link',
-  as: single({
+  as: shell({
     bin: 'npm',
     flags: ['link', 'gs-testing', 'devbase', 'dev', 'moirai'],
   }),

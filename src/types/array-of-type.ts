@@ -3,7 +3,7 @@ import {ValidationResult} from '../core/validation-result';
 
 import {instanceofType} from './instanceof-type';
 
-export class ArrayOfType<T> extends Type<T[]> {
+export class ArrayOfType<T> extends Type<readonly T[]> {
   constructor(readonly elementType: Type<T>) {
     super();
   }
@@ -12,7 +12,7 @@ export class ArrayOfType<T> extends Type<T[]> {
     return `${this.elementType}[]`;
   }
 
-  validate(target: unknown): ValidationResult<T[]> {
+  validate(target: unknown): ValidationResult<readonly T[]> {
     if (instanceofType(Array).check(target)) {
       for (const element of target) {
         const result = this.elementType.validate(element);
@@ -41,6 +41,6 @@ export class ArrayOfType<T> extends Type<T[]> {
  * @param <T> Type of the element.
  * @return The array type.
  */
-export function arrayOfType<T>(type: Type<T>): Type<T[]> {
+export function arrayOfType<T>(type: Type<T>): Type<readonly T[]> {
   return new ArrayOfType(type);
 }

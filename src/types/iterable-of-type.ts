@@ -1,5 +1,4 @@
 import {Type} from '../core/type';
-import {TypeAssertionError} from '../core/type-assertion-error';
 import {ValidationResult} from '../core/validation-result';
 
 import {hasPropertiesType} from './has-properties-type';
@@ -19,23 +18,18 @@ export class IterableOfType<T> extends Type<Iterable<T>> {
   }
 
   validate(target: unknown): ValidationResult<Iterable<T>> {
-    try {
-      IterableType.assert(target);
-    } catch (e) {
-      if (!(e instanceof TypeAssertionError)) {
-        throw e;
-      }
-
+    const iterableResult = IterableType.validate(target);
+    if (!iterableResult.passes) {
       return {
         causes: [
           `not an ${this.toString()}`,
-          ...e.causes,
+          ...iterableResult.causes,
         ],
         passes: false,
       };
     }
 
-    const targetArray = [...target];
+    const targetArray = [...iterableResult.value];
     for (let i = 0; i < targetArray.length; i++) {
       const result = this.type.validate(targetArray[i]);
       if (!result.passes) {
@@ -49,7 +43,7 @@ export class IterableOfType<T> extends Type<Iterable<T>> {
       }
     }
 
-    return {passes: true, value: target};
+    return {passes: true, value: iterableResult.value};
   }
 }
 
