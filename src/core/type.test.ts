@@ -28,8 +28,8 @@ test('@types/core/type', () => {
       let caughtError: TypeAssertionError|null = null;
       try {
         type.assert(1);
-      } catch (e) {
-        caughtError = e;
+      } catch (e: unknown) {
+        caughtError = e as TypeAssertionError|null;
       }
 
       assert(caughtError).toNot.beNull();

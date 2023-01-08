@@ -4,7 +4,7 @@ import {ValidationResult} from '../core/validation-result';
 type TypeSpec<O extends {}> = {readonly [K in keyof O]: Type<O[K]>};
 type SpecMap<O extends {}> = ReadonlyMap<keyof O, Type<unknown>>;
 
-export class HasPropertiesType<O> extends Type<O> {
+export class HasPropertiesType<O extends {}> extends Type<O> {
   constructor(
       private readonly requiredSpec: SpecMap<O>,
       private readonly optionalSpec: SpecMap<O>,
@@ -111,8 +111,8 @@ function convertToSpecMap<O extends TypeSpec<{}>>(obj: O): SpecMap<O> {
  * Creates a type of an object with known properties and their types.
  * @param spec Map of property of the expected object type to the type of that property.
  */
-export function hasPropertiesType<REQ>(required: TypeSpec<REQ>): Type<REQ>;
-export function hasPropertiesType<REQ, OPT>(
+export function hasPropertiesType<REQ extends {}>(required: TypeSpec<REQ>): Type<REQ>;
+export function hasPropertiesType<REQ extends {}, OPT extends {}>(
     required: TypeSpec<REQ>,
     optional: TypeSpec<OPT>,
 ): Type<REQ&Partial<OPT>>;
