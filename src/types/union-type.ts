@@ -58,15 +58,15 @@ export function unionType<S0, S1, S2, S3, S4, S5, S6>(
     types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>],
 ): Type<S0|S1|S2|S3|S4|S5|S6>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6, S7>(
-    // tslint:disable-next-line: max-line-length
+    // eslint-disable-next-line max-len
     types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>, Type<S7>],
 ): Type<S0|S1|S2|S3|S4|S5|S6|S7>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6, S7, S8>(
-    // tslint:disable-next-line: max-line-length
+    // eslint-disable-next-line max-len
     types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>, Type<S7>, Type<S8>],
 ): Type<S0|S1|S2|S3|S4|S5|S6|S7|S8>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6, S7, S8, S9>(
-    // tslint:disable-next-line: max-line-length
+    // eslint-disable-next-line max-len
     types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>, Type<S7>, Type<S8>, Type<S9>],
 ): Type<S0|S1|S2|S3|S4|S5|S6|S7|S8|S9>;
 export function unionType<T>(types: ReadonlyArray<Type<unknown>> = []): Type<T> {

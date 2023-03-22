@@ -19,6 +19,10 @@ export class TupleOfType<T extends readonly unknown[]> extends Type<T> {
 
     for (let i = 0; i < this.spec.length; i++) {
       const spec = this.spec[i];
+      if (!spec) {
+        continue;
+      }
+
       const result = spec.validate(target[i]);
       if (!result.passes) {
         return {
