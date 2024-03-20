@@ -9,7 +9,9 @@ test('@types/number-type', () => {
     });
 
     should('pass if the value is a Number object', () => {
-      assert(numberType.validate(Number(123))).to.haveProperties({passes: true});
+      assert(numberType.validate(Number(123))).to.haveProperties({
+        passes: true,
+      });
     });
 
     should('not pass otherwise', () => {

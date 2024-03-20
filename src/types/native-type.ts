@@ -7,10 +7,5 @@ import {symbolType} from './symbol-type';
 import {undefinedType} from './undefined-type';
 import {unionType} from './union-type';
 
-export const nativeType: Type<boolean|number|string|symbol|undefined> = unionType([
-  booleanType,
-  numberType,
-  stringType,
-  symbolType,
-  undefinedType,
-]);
+export const nativeType: Type<boolean | number | string | symbol | undefined> =
+  unionType([booleanType, numberType, stringType, symbolType, undefinedType]);

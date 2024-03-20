@@ -13,17 +13,24 @@ test('@types/string-record-type', () => {
       });
     });
 
-    should('should not pass if a value in the object does not pass the given type', () => {
-      const result = stringRecordType(numberType).validate({a: 1, b: 'b', c: 3});
+    should(
+      'should not pass if a value in the object does not pass the given type',
+      () => {
+        const result = stringRecordType(numberType).validate({
+          a: 1,
+          b: 'b',
+          c: 3,
+        });
 
-      assert(result).to.haveProperties({
-        causes: arrayThat<string>().haveExactElements([
-          stringThat().match(/b is not of type number/),
-          stringThat().match(/not a number/),
-        ]),
-        passes: false,
-      });
-    });
+        assert(result).to.haveProperties({
+          causes: arrayThat<string>().haveExactElements([
+            stringThat().match(/b is not of type number/),
+            stringThat().match(/not a number/),
+          ]),
+          passes: false,
+        });
+      },
+    );
 
     should('should not pass if not an object', () => {
       const result = stringRecordType(numberType).validate(123);

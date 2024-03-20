@@ -13,8 +13,8 @@ export abstract class Type<T> {
     }
 
     throw new TypeAssertionError(
-        `${target} is not of type ${this.toString()}`,
-        result.causes,
+      `${target} is not of type ${this.toString()}`,
+      result.causes,
     );
   }
 

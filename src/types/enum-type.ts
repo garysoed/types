@@ -9,12 +9,15 @@ interface Enum {
 }
 
 export class EnumType<E> extends Type<E> {
-  constructor(readonly enumSet: Enum) {
+  constructor(
+    readonly enumSet: Enum,
+    private readonly enumName: string,
+  ) {
     super();
   }
 
   toString(): string {
-    return 'Enum';
+    return this.enumName;
   }
 
   validate(target: unknown): ValidationResult<E> {
@@ -32,6 +35,6 @@ export class EnumType<E> extends Type<E> {
  * Creates type for the given enum.
  * @param enumType Type of enum to check.
  */
-export function enumType<E>(enumType: Enum): Type<E> {
-  return new EnumType<E>(enumType);
+export function enumType<E>(enumType: Enum, enumName: string): Type<E> {
+  return new EnumType<E>(enumType, enumName);
 }

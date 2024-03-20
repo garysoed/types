@@ -2,9 +2,7 @@ import {Type} from '../core/type';
 import {ValidationResult} from '../core/validation-result';
 
 class NotType<T, X extends T> extends Type<Exclude<T, X>> {
-  constructor(
-      private readonly type: Type<X>,
-  ) {
+  constructor(private readonly type: Type<X>) {
     super();
   }
 

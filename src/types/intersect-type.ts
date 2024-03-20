@@ -7,7 +7,7 @@ export class IntersectType<T> extends Type<T> {
   }
 
   toString(): string {
-    const typesString = this.types.map(type => `${type}`).join(' & ');
+    const typesString = this.types.map((type) => `${type}`).join(' & ');
 
     return `(${typesString})`;
   }
@@ -17,10 +17,7 @@ export class IntersectType<T> extends Type<T> {
       const result = subtype.validate(target);
       if (!result.passes) {
         return {
-          causes: [
-            `not a ${subtype}`,
-            ...result.causes,
-          ],
+          causes: [`not a ${subtype}`, ...result.causes],
           passes: false,
         };
       }
@@ -40,17 +37,19 @@ export class IntersectType<T> extends Type<T> {
 export function intersectType(): Type<any>;
 export function intersectType<S0>(types: readonly [Type<S0>]): Type<S0>;
 export function intersectType<S0, S1>(
-    types: readonly [Type<S0>, Type<S1>],
-): Type<S0&S1>;
+  types: readonly [Type<S0>, Type<S1>],
+): Type<S0 & S1>;
 export function intersectType<S0, S1, S2>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>],
-): Type<S0&S1&S2>;
+  types: readonly [Type<S0>, Type<S1>, Type<S2>],
+): Type<S0 & S1 & S2>;
 export function intersectType<S0, S1, S2, S3>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>],
-): Type<S0&S1&S2&S3>;
+  types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>],
+): Type<S0 & S1 & S2 & S3>;
 export function intersectType<S0, S1, S2, S3, S4>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>],
-): Type<S0&S1&S2&S3&S4>;
-export function intersectType<T>(types: ReadonlyArray<Type<unknown>> = []): Type<T> {
+  types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>],
+): Type<S0 & S1 & S2 & S3 & S4>;
+export function intersectType<T>(
+  types: ReadonlyArray<Type<unknown>> = [],
+): Type<T> {
   return new IntersectType(types);
 }

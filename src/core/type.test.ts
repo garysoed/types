@@ -23,20 +23,20 @@ test('@types/core/type', () => {
     should('throw error if validation does not pass', () => {
       const cause1 = 'cause1';
       const cause2 = 'cause2';
-      const type: Type<number> = new TestType({causes: [cause1, cause2], passes: false});
+      const type: Type<number> = new TestType({
+        causes: [cause1, cause2],
+        passes: false,
+      });
 
-      let caughtError: TypeAssertionError|null = null;
+      let caughtError: TypeAssertionError | null = null;
       try {
         type.assert(1);
       } catch (e: unknown) {
-        caughtError = e as TypeAssertionError|null;
+        caughtError = e as TypeAssertionError | null;
       }
 
       assert(caughtError).toNot.beNull();
-      assert(caughtError!.causes).to.haveExactElements([
-        cause1,
-        cause2,
-      ]);
+      assert(caughtError!.causes).to.haveExactElements([cause1, cause2]);
     });
 
     should('not throw error if validation passes', () => {

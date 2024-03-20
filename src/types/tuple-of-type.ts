@@ -9,7 +9,7 @@ export class TupleOfType<T extends readonly unknown[]> extends Type<T> {
   }
 
   toString(): string {
-    return `[${this.spec.map(type => `${type}`).join(', ')}]`;
+    return `[${this.spec.map((type) => `${type}`).join(', ')}]`;
   }
 
   validate(target: unknown): ValidationResult<T> {
@@ -26,10 +26,7 @@ export class TupleOfType<T extends readonly unknown[]> extends Type<T> {
       const result = spec.validate(target[i]);
       if (!result.passes) {
         return {
-          causes: [
-            `element ${i} is not a ${spec}`,
-            ...result.causes,
-          ],
+          causes: [`element ${i} is not a ${spec}`, ...result.causes],
           passes: false,
         };
       }
@@ -43,6 +40,8 @@ export class TupleOfType<T extends readonly unknown[]> extends Type<T> {
  * Creates a tuple type.
  * @param spec Types of the tuple values.
  */
-export function tupleOfType<T extends readonly unknown[]>(spec: TypeOf<T>): Type<T> {
+export function tupleOfType<T extends readonly unknown[]>(
+  spec: TypeOf<T>,
+): Type<T> {
   return new TupleOfType(spec);
 }

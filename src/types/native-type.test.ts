@@ -17,7 +17,9 @@ test('@types/native-type', () => {
     });
 
     should('pass if the value is a symbol', () => {
-      assert(nativeType.validate(Symbol('symbol'))).to.haveProperties({passes: true});
+      assert(nativeType.validate(Symbol('symbol'))).to.haveProperties({
+        passes: true,
+      });
     });
 
     should('not pass otherwise', () => {

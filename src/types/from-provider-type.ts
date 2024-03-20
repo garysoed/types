@@ -3,8 +3,9 @@ import {ValidationResult} from '../core/validation-result';
 
 class FromProviderType<T> extends Type<T> {
   constructor(
-      private readonly typeName: string,
-      private readonly provider: () => Type<T>) {
+    private readonly typeName: string,
+    private readonly provider: () => Type<T>,
+  ) {
     super();
   }
 
@@ -17,6 +18,9 @@ class FromProviderType<T> extends Type<T> {
   }
 }
 
-export function fromProviderType<T>(typeName: string, provider: () => Type<T>): Type<T> {
+export function fromProviderType<T>(
+  typeName: string,
+  provider: () => Type<T>,
+): Type<T> {
   return new FromProviderType(typeName, provider);
 }

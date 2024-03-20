@@ -40,6 +40,8 @@ export class StringRecordType<T> extends Type<Record<string, T>> {
   }
 }
 
-export function stringRecordType<T>(valueType: Type<T>): Type<Record<string, T>> {
+export function stringRecordType<T>(
+  valueType: Type<T>,
+): Type<Record<string, T>> {
   return new StringRecordType(valueType);
 }

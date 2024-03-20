@@ -30,7 +30,7 @@ export class ElementWithTagType<E extends HTMLElement> extends Type<E> {
  * @param tag HTML tag of the element.
  */
 export function elementWithTagType<T extends keyof HTMLElementTagNameMap>(
-    tag: T,
+  tag: T,
 ): Type<HTMLElementTagNameMap[T]>;
 export function elementWithTagType(tag: string): Type<HTMLElement>;
 export function elementWithTagType(tag: string): Type<HTMLElement> {

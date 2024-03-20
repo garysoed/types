@@ -5,12 +5,19 @@ import {numberType} from './number-type';
 
 test('@types/iterable-of-type', () => {
   test('validate', () => {
-    should('pass if the target is an iterable with the correct elements', () => {
-      assert(iterableOfType(numberType).validate([1, 2, 3])).to.haveProperties({passes: true});
-    });
+    should(
+      'pass if the target is an iterable with the correct elements',
+      () => {
+        assert(
+          iterableOfType(numberType).validate([1, 2, 3]),
+        ).to.haveProperties({passes: true});
+      },
+    );
 
     should('not pass if one of the elements is of the wrong type', () => {
-      assert(iterableOfType(numberType).validate([1, '2', 3])).to.haveProperties({
+      assert(
+        iterableOfType(numberType).validate([1, '2', 3]),
+      ).to.haveProperties({
         causes: arrayThat<string>().haveExactElements([
           stringThat().match(/item 1 is not a number/),
           stringThat().match(/not a number/),

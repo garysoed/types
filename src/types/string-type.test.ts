@@ -9,7 +9,9 @@ test('@types/string-type', () => {
     });
 
     should('pass if the value is a String object', () => {
-      assert(stringType.validate(String('string'))).to.haveProperties({passes: true});
+      assert(stringType.validate(String('string'))).to.haveProperties({
+        passes: true,
+      });
     });
 
     should('not pass otherwise', () => {

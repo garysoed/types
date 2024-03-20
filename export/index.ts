@@ -27,4 +27,3 @@ export {unknownType} from '../src/types/unknown-type';
 export {Type} from '../src/core/type';
 export {TypeAssertionError} from '../src/core/type-assertion-error';
 export {ValidationResult} from '../src/core/validation-result';
-

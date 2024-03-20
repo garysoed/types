@@ -7,7 +7,7 @@ export class UnionType<T> extends Type<T> {
   }
 
   toString(): string {
-    const typesString = this.types.map(type => `${type}`).join(' | ');
+    const typesString = this.types.map((type) => `${type}`).join(' | ');
 
     return `(${typesString})`;
   }
@@ -21,8 +21,8 @@ export class UnionType<T> extends Type<T> {
       }
 
       allSubCauses.push(
-          `not a ${subtype}`,
-          ...result.causes.map(cause => `>   ${cause}`),
+        `not a ${subtype}`,
+        ...result.causes.map((cause) => `>   ${cause}`),
       );
     }
 
@@ -40,35 +40,75 @@ export class UnionType<T> extends Type<T> {
 export function unionType(): Type<never>;
 export function unionType<S0>(types: readonly [Type<S0>]): Type<S0>;
 export function unionType<S0, S1>(
-    types: readonly [Type<S0>, Type<S1>],
-): Type<S0|S1>;
+  types: readonly [Type<S0>, Type<S1>],
+): Type<S0 | S1>;
 export function unionType<S0, S1, S2>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>],
-): Type<S0|S1|S2>;
+  types: readonly [Type<S0>, Type<S1>, Type<S2>],
+): Type<S0 | S1 | S2>;
 export function unionType<S0, S1, S2, S3>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>],
-): Type<S0|S1|S2|S3>;
+  types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>],
+): Type<S0 | S1 | S2 | S3>;
 export function unionType<S0, S1, S2, S3, S4>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>],
-): Type<S0|S1|S2|S3|S4>;
+  types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>],
+): Type<S0 | S1 | S2 | S3 | S4>;
 export function unionType<S0, S1, S2, S3, S4, S5>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>],
-): Type<S0|S1|S2|S3|S4|S5>;
+  types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>],
+): Type<S0 | S1 | S2 | S3 | S4 | S5>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6>(
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>],
-): Type<S0|S1|S2|S3|S4|S5|S6>;
+  types: readonly [
+    Type<S0>,
+    Type<S1>,
+    Type<S2>,
+    Type<S3>,
+    Type<S4>,
+    Type<S5>,
+    Type<S6>,
+  ],
+): Type<S0 | S1 | S2 | S3 | S4 | S5 | S6>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6, S7>(
-    // eslint-disable-next-line max-len
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>, Type<S7>],
-): Type<S0|S1|S2|S3|S4|S5|S6|S7>;
+  // eslint-disable-next-line max-len
+  types: readonly [
+    Type<S0>,
+    Type<S1>,
+    Type<S2>,
+    Type<S3>,
+    Type<S4>,
+    Type<S5>,
+    Type<S6>,
+    Type<S7>,
+  ],
+): Type<S0 | S1 | S2 | S3 | S4 | S5 | S6 | S7>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6, S7, S8>(
-    // eslint-disable-next-line max-len
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>, Type<S7>, Type<S8>],
-): Type<S0|S1|S2|S3|S4|S5|S6|S7|S8>;
+  // eslint-disable-next-line max-len
+  types: readonly [
+    Type<S0>,
+    Type<S1>,
+    Type<S2>,
+    Type<S3>,
+    Type<S4>,
+    Type<S5>,
+    Type<S6>,
+    Type<S7>,
+    Type<S8>,
+  ],
+): Type<S0 | S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8>;
 export function unionType<S0, S1, S2, S3, S4, S5, S6, S7, S8, S9>(
-    // eslint-disable-next-line max-len
-    types: readonly [Type<S0>, Type<S1>, Type<S2>, Type<S3>, Type<S4>, Type<S5>, Type<S6>, Type<S7>, Type<S8>, Type<S9>],
-): Type<S0|S1|S2|S3|S4|S5|S6|S7|S8|S9>;
-export function unionType<T>(types: ReadonlyArray<Type<unknown>> = []): Type<T> {
+  // eslint-disable-next-line max-len
+  types: readonly [
+    Type<S0>,
+    Type<S1>,
+    Type<S2>,
+    Type<S3>,
+    Type<S4>,
+    Type<S5>,
+    Type<S6>,
+    Type<S7>,
+    Type<S8>,
+    Type<S9>,
+  ],
+): Type<S0 | S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9>;
+export function unionType<T>(
+  types: ReadonlyArray<Type<unknown>> = [],
+): Type<T> {
   return new UnionType(types);
 }

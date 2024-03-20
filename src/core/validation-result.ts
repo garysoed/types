@@ -8,4 +8,4 @@ interface ValidationFailed {
   readonly causes: readonly string[];
 }
 
-export type ValidationResult<T> = ValidationSuccess<T>|ValidationFailed;
+export type ValidationResult<T> = ValidationSuccess<T> | ValidationFailed;

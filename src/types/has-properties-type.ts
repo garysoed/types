@@ -6,8 +6,8 @@ type SpecMap<O extends {}> = ReadonlyMap<keyof O, Type<unknown>>;
 
 export class HasPropertiesType<O extends {}> extends Type<O> {
   constructor(
-      private readonly requiredSpec: SpecMap<O>,
-      private readonly optionalSpec: SpecMap<O>,
+    private readonly requiredSpec: SpecMap<O>,
+    private readonly optionalSpec: SpecMap<O>,
   ) {
     super();
   }
@@ -97,11 +97,17 @@ function getOwnKeys<O extends {}>(obj: O): ReadonlySet<keyof O> {
 function convertToSpecMap<O extends TypeSpec<{}>>(obj: O): SpecMap<O> {
   const specMap = new Map<keyof O, Type<unknown>>();
   for (const key of Object.keys(obj)) {
-    specMap.set(key as keyof O, obj[key as keyof O] as unknown as Type<unknown>);
+    specMap.set(
+      key as keyof O,
+      obj[key as keyof O] as unknown as Type<unknown>,
+    );
   }
 
   for (const symbolKey of Object.getOwnPropertySymbols(obj)) {
-    specMap.set(symbolKey as keyof O, obj[symbolKey as keyof O] as unknown as Type<unknown>);
+    specMap.set(
+      symbolKey as keyof O,
+      obj[symbolKey as keyof O] as unknown as Type<unknown>,
+    );
   }
 
   return specMap;
@@ -111,14 +117,19 @@ function convertToSpecMap<O extends TypeSpec<{}>>(obj: O): SpecMap<O> {
  * Creates a type of an object with known properties and their types.
  * @param spec Map of property of the expected object type to the type of that property.
  */
-export function hasPropertiesType<REQ extends {}>(required: TypeSpec<REQ>): Type<REQ>;
+export function hasPropertiesType<REQ extends {}>(
+  required: TypeSpec<REQ>,
+): Type<REQ>;
 export function hasPropertiesType<REQ extends {}, OPT extends {}>(
-    required: TypeSpec<REQ>,
-    optional: TypeSpec<OPT>,
-): Type<REQ&Partial<OPT>>;
-export function hasPropertiesType(required: TypeSpec<{}>, optional?: TypeSpec<{}>): Type<{}> {
+  required: TypeSpec<REQ>,
+  optional: TypeSpec<OPT>,
+): Type<REQ & Partial<OPT>>;
+export function hasPropertiesType(
+  required: TypeSpec<{}>,
+  optional?: TypeSpec<{}>,
+): Type<{}> {
   return new HasPropertiesType(
-      convertToSpecMap(required),
-      convertToSpecMap(optional ?? {}),
+    convertToSpecMap(required),
+    convertToSpecMap(optional ?? {}),
   );
 }

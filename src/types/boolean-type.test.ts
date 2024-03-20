@@ -9,7 +9,9 @@ test('@types/boolean-type', () => {
     });
 
     should('should pass if the value is a Boolean object', () => {
-      assert(booleanType.validate(Boolean(false))).to.haveProperties({passes: true});
+      assert(booleanType.validate(Boolean(false))).to.haveProperties({
+        passes: true,
+      });
     });
 
     should('should not pass otherwise', () => {
