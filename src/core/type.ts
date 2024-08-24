@@ -12,8 +12,9 @@ export abstract class Type<T> {
       return;
     }
 
+    const valueStr = typeof target === 'symbol' ? target.toString() : target;
     throw new TypeAssertionError(
-      `${target} is not of type ${this.toString()}`,
+      `${target} is not of type ${this.toString()}, was ${valueStr}`,
       result.causes,
     );
   }

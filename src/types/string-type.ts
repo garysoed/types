@@ -11,7 +11,8 @@ export class StringType extends Type<string> {
       return {passes: true, value: target as string};
     }
 
-    return {passes: false, causes: ['not a string']};
+    const valueStr = typeof target === 'symbol' ? target.toString() : target;
+    return {passes: false, causes: [`not a string, was ${valueStr}`]};
   }
 }
 
