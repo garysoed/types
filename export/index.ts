@@ -1,3 +1,4 @@
+export {anyType} from '../src/types/any-type';
 export {arrayOfType, ArrayOfType} from '../src/types/array-of-type';
 export {booleanType} from '../src/types/boolean-type';
 export {elementWithTagType} from '../src/types/element-with-tag-type';
